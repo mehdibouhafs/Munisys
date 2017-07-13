@@ -42,7 +42,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/intervenantPrincipale"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Mr Farhat Driss"
@@ -79,22 +79,19 @@
         android:layout_marginRight="30dp"
         android:orientation="horizontal">
 
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:id="@+id/selectedIntervenant"
-            android:layout_width="400dp"
-            android:layout_height="60dp"
-            android:layout_marginLeft="2dp"
-            android:layout_weight="1"
-            android:entries="@array/intervenants"
-            android:gravity="center_horizontal"
-            app:hintText="Select Nom de l'intervenant" />
+        <com.androidbuts.multispinnerfilter.MultiSpinnerSearch
+            android:id="@+id/searchMultiSpinnerUnlimited"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:hintText="Multi Selection With Filter Without Limit" />
 
         <ImageButton
             android:id="@+id/newIntervenant"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="5dp"
             android:background="@drawable/add"
             android:backgroundTint="@android:color/holo_green_light" />
     </LinearLayout>

@@ -17,6 +17,7 @@ import java.util.List;
 
 import munisys.net.ma.munisysinventory.R;
 import munisys.net.ma.munisysinventory.SignupActivity;
+import munisys.net.ma.munisysinventory.dao.Db_Invenantaire;
 import munisys.net.ma.munisysinventory.dao.Db_gest;
 import munisys.net.ma.munisysinventory.entities.Session;
 import munisys.net.ma.munisysinventory.entities.User;
@@ -29,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView _signupLink;
     private Button _loginButton;
     private Session session;
-    private Db_gest db;
+    private Db_Invenantaire db;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,14 +46,12 @@ public class LoginActivity extends AppCompatActivity {
         }
 
 
-
-
         _emailText = (EditText) findViewById(R.id.input_email);
         _passwordText = (EditText) findViewById(R.id.input_password);
         _loginButton = (Button) findViewById(R.id.btn_login);
         _signupLink = (TextView) findViewById(R.id.link_signup);
 
-        db = new Db_gest(this,16);
+        db = new Db_Invenantaire(this,1);
         List<User> users = db.getALLUser();
         for (User e : users){
             Log.e("User " , e.toString());

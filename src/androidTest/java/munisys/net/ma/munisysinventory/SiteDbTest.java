@@ -13,9 +13,8 @@ import org.junit.runners.MethodSorters;
 
 import java.util.ArrayList;
 
+import munisys.net.ma.munisysinventory.dao.Db_Invenantaire;
 import munisys.net.ma.munisysinventory.dao.Db_gest;
-import munisys.net.ma.munisysinventory.entities.Client;
-import munisys.net.ma.munisysinventory.entities.Collaborateur;
 import munisys.net.ma.munisysinventory.entities.Site;
 
 import static org.junit.Assert.assertEquals;
@@ -27,7 +26,7 @@ import static org.junit.Assert.assertEquals;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class SiteDbTest {
 
-    private Db_gest db;
+    private Db_Invenantaire db;
 
     private Context context;
 
@@ -36,8 +35,24 @@ public class SiteDbTest {
     @Before
     public void instantiate(){
         this.context = InstrumentationRegistry.getTargetContext();
-        this.db = new Db_gest(context,15);
+        this.db = new Db_Invenantaire(context,8);
     }
+
+
+
+
+
+    @Test
+    public void get_isCorrect2() throws Exception {
+        ArrayList<Site> sites =  this.db.getSitesClient(2);
+        for (Site e:sites) {
+            Log.e("id = " + e.getIdSite() + "Site  ", e.getSite() + " ville = " + e.getVille() + " idClient " + e.getClientId());
+        }
+        assertEquals(sites.size(), 2);
+
+    }
+
+
 
     @Test
     public void insert_isCorrect() throws Exception {
@@ -46,20 +61,13 @@ public class SiteDbTest {
         this.db.insererSite("BENSOUDA","FES",2);*/
 
 
-        ArrayList<Site> sites =  this.db.getAllSites();
+       /* ArrayList<Site> sites =  this.db.getAllSites();
         for (Site e:sites
                 ) {
-            Log.e( "id = " + e.getId() +"Site  ",e.getSite() +" ville = "+ e.getVille() +  " idClient " + e.getClientId());
+            Log.e( "id = " + e.getIdSite() +"Site  ",e.getSite() +" ville = "+ e.getVille() +  " idClient " + e.getClientId());
         }
 
-        assertEquals(sites.size(), 3);
-    }
-
-    @Test
-    public void get_isCorrect() throws Exception {
-        Site site =  this.db.getSite(2);
-
-        assertEquals(site.getId(), 2);
+        assertEquals(sites.size(), 3);*/
     }
 
     /*@Test

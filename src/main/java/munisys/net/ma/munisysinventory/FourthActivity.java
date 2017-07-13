@@ -61,11 +61,11 @@ public class FourthActivity extends HomeActivity {
         intervenant.setText(intervenant1.getNomIntervenant());
         client.setText(client1.getClient());
         date.setText("13/06/2017");
-        burreauEtage.setText(client1.getBurreauEtage());
-        serviceCentre.setText(client1.getServiceCentre());
-        site.setText(client1.getSite());
+       // burreauEtage.setText(client1.get);
+       // serviceCentre.setText(client1.getServiceCentre());
+        //site.setText(client1.getSite());
         //direction.setText(client1.getDirection());
-        ville.setText(client1.getVille());
+        //ville.setText(client1.getVille());
 
         prepareMovieData();
 

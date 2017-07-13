@@ -11,11 +11,12 @@ import munisys.net.ma.munisysinventory.entities.Site;
  */
 
 public interface ISiteService {
-    public void insererSite(String site, String ville,int cliendId);
+    public boolean insererSite(String site, String ville,int cliendId);
     public void deleteSite(int id);
     public void majSite(int id, String site, String ville, int clientId);
     public Site getSite(int id);
     public ArrayList<Site> getSitesClient(int id);
     public ArrayList<Site> getAllSites();
+    public Boolean getSiteBoolean(String site,String ville,int clientID);
 
 }

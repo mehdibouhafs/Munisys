@@ -4,6 +4,7 @@ import android.content.Intent;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by mehdibouhafs on 06/07/2017.
@@ -14,26 +15,28 @@ public class Inventaire {
     private int id;
     private Client client;
     private ArrayList<ProduitInventaire> produitsInventaire;
-    private Intervenant intervenant;
+    private ArrayList<Intervenant> intervenants;
+    private SiteInventaire siteInventaire;
     private Date dateInventaire;
 
     public Inventaire() {
         this.dateInventaire = new Date();
     }
 
-    public Inventaire(int id, Client client, ArrayList<ProduitInventaire> produitsInventaire, Intervenant intervenant, Date dateInventaire) {
-        this.id = id;
+    public Inventaire(Client client, ArrayList<Intervenant>  intervenants, SiteInventaire siteInventaire, Date dateInventaire) {
         this.client = client;
-        this.produitsInventaire = produitsInventaire;
-        this.intervenant = intervenant;
+        this.intervenants = intervenants;
+        this.siteInventaire = siteInventaire;
         this.dateInventaire = dateInventaire;
     }
 
-    public Inventaire(Client client, ArrayList<ProduitInventaire> produitsInventaire, Intervenant intervenant) {
+    public Inventaire(int id, Client client, SiteInventaire siteInventaire, ArrayList<Intervenant>  intervenants,ArrayList<ProduitInventaire> produitsInventaire, Date dateInventaire) {
+        this.id = id;
         this.client = client;
+        this.intervenants = intervenants;
+        this.siteInventaire = siteInventaire;
+        this.dateInventaire = dateInventaire;
         this.produitsInventaire = produitsInventaire;
-        this.intervenant = intervenant;
-        this.dateInventaire = new Date();
     }
 
     public Client getClient() {
@@ -52,12 +55,12 @@ public class Inventaire {
         this.produitsInventaire = produits;
     }
 
-    public Intervenant getIntervenant() {
-        return intervenant;
+    public ArrayList<Intervenant> getIntervenants() {
+        return intervenants;
     }
 
-    public void setIntervenant(Intervenant intervenant) {
-        this.intervenant = intervenant;
+    public void setIntervenants(ArrayList<Intervenant> intervenants) {
+        this.intervenants = intervenants;
     }
 
     public Date getDateInventaire() {
@@ -76,13 +79,27 @@ public class Inventaire {
         this.id = id;
     }
 
+    public ArrayList<ProduitInventaire> getProduitsInventaire() {
+        return produitsInventaire;
+    }
+
+    public void setProduitsInventaire(ArrayList<ProduitInventaire> produitsInventaire) {
+        this.produitsInventaire = produitsInventaire;
+    }
+
+    public SiteInventaire getSiteInventaire() {
+        return siteInventaire;
+    }
+
+    public void setSiteInventaire(SiteInventaire siteInventaire) {
+        this.siteInventaire = siteInventaire;
+    }
+
     @Override
     public String toString() {
         return "Inventaire{" +
-                "id=" + id +
-                ", client=" + client +
-                ", produits =" + produitsInventaire +
-                ", intervenant=" + intervenant +
+                "client=" + client +
+                ", siteInventaire=" + siteInventaire +
                 ", dateInventaire=" + dateInventaire +
                 '}';
     }

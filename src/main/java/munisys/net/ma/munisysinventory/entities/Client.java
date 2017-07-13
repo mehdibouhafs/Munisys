@@ -10,47 +10,13 @@ public class Client implements Serializable {
 
     private int id;
     private String client;
-    private String site;
-    private String direction;
-    private String ville;
-    private String burreauEtage;
-    private String serviceCentre;
-    private String telephone;
-    private String contact;
-
 
     public Client() {
     }
 
-    public Client(int id, String client, String site, String direction,
-                  String ville, String burreauEtage, String serviceCentre,String contact,String telephone) {
+    public Client(int id, String client) {
         this.id = id;
         this.client = client;
-        this.site = site;
-        this.direction = direction;
-        this.ville = ville;
-        this.burreauEtage = burreauEtage;
-        this.serviceCentre = serviceCentre;
-        this.contact = contact;
-        this.telephone = telephone;
-
-    }
-
-    public Client(String client, String site, String ville) {
-        this.client = client;
-        this.site = site;
-        this.ville = ville;
-    }
-
-    public Client(String client, String site, String direction, String ville, String burreauEtage, String serviceCentre,String contact, String telephone) {
-        this.client = client;
-        this.site = site;
-        this.direction = direction;
-        this.ville = ville;
-        this.burreauEtage = burreauEtage;
-        this.serviceCentre = serviceCentre;
-        this.telephone = telephone;
-        this.contact = contact;
     }
 
     public int getId() {
@@ -69,65 +35,12 @@ public class Client implements Serializable {
         this.client = client;
     }
 
-    public String getSite() {
-        return site;
-    }
-
-    public void setSite(String site) {
-        this.site = site;
-    }
-
-    public String getDirection() {
-        return direction;
-    }
-
-    public void setDirection(String direction) {
-        this.direction = direction;
-    }
-
-    public String getVille() {
-        return ville;
-    }
-
-    public void setVille(String ville) {
-        this.ville = ville;
-    }
-
-    public String getBurreauEtage() {
-        return burreauEtage;
-    }
-
-    public void setBurreauEtage(String burreauEtage) {
-        this.burreauEtage = burreauEtage;
-    }
-
-    public String getServiceCentre() {
-        return serviceCentre;
-    }
-
-    public void setServiceCentre(String serviceCentre) {
-        this.serviceCentre = serviceCentre;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
-
     @Override
     public String toString() {
-        return client;
+        return "Client{" +
+                "id=" + id +
+                ", client='" + client + '\'' +
+                '}';
     }
 
     /*

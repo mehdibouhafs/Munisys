@@ -13,11 +13,11 @@ import munisys.net.ma.munisysinventory.entities.Produit;
  */
 
 public interface IIventaireService {
-    public void insererInventaire(int idClient, int idIntervenant, Date dateInventaire);
+    public void insererInventaire(int idClient, int idIntervenant,int siteIventaireId, Date dateInventaire);
 
 
     public void deleteInventaire(int id);
-    public void majInventaire(int id,int idClient, int idIntervenant, Date dateInventaire);
+    //public void majInventaire(int id,int idClient, int idIntervenant,int siteIventaireId, Date dateInventaire);
     public Inventaire getInventaire(int id);
     public ArrayList<Inventaire> getAllInventaires();
 }

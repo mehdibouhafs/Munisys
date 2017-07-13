@@ -53,38 +53,32 @@ public class InventoriesActivity extends HomeActivity {
         Inventaire inventaire3 = new Inventaire();
         ArrayList<ProduitInventaire> produits = new ArrayList<>();
         Client c = new Client();
-        c.setBurreauEtage("2.8 / 2Etage");
-        c.setDirection("Informatique");
-        c.setSite("ABOU FARES");
-        c.setServiceCentre("DOSI");
+
         c.setClient("GCAM");
-        c.setVille("ERRACHIDIA");
+
 
 
         Client c1 = new Client();
-        c1.setBurreauEtage("1 Etage");
-        c1.setDirection("Informatique");
-        c1.setSite("Munisys Casa");
-        c1.setServiceCentre("DOSI");
+
         c1.setClient("Munisys");
-        c1.setVille("Casa");
+
 
 
 
         ProduitInventaire p = new ProduitInventaire();
-        p.setProduit(new Produit("modele","Ecran Pc","HP","4230"));
+
         p.setCollaborateur("Samir");
         p.setSN("6CM311130DQ");
         p.setnInventaire("595959");
 
         ProduitInventaire p1 = new ProduitInventaire();
-        p.setProduit(new Produit("modele","Ecran Pc","HP","4230"));
+
         p.setCollaborateur("Samir");
         p.setSN("6CM311130DQ");
         p.setnInventaire("595959");
 
         ProduitInventaire p2 = new ProduitInventaire();
-        p.setProduit(new Produit("modele","Ecran Pc","HP","4230"));
+
         p.setCollaborateur("Samir");
         p.setSN("6CM311130DQ");
         p.setnInventaire("595959");

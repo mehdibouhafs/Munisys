@@ -15,25 +15,37 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidbuts.multispinnerfilter.KeyPairBoolData;
+import com.androidbuts.multispinnerfilter.MultiSpinnerSearch;
+import com.androidbuts.multispinnerfilter.SpinnerListener;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import munisys.net.ma.munisysinventory.adapters.SpinnerAdapter;
+import munisys.net.ma.munisysinventory.dao.Db_Invenantaire;
 import munisys.net.ma.munisysinventory.dao.Db_gest;
+import munisys.net.ma.munisysinventory.entities.Client;
 import munisys.net.ma.munisysinventory.entities.Intervenant;
+import munisys.net.ma.munisysinventory.entities.Session;
+import munisys.net.ma.munisysinventory.entities.Site;
 import munisys.net.ma.munisysinventory.entities.User;
 
 public class FirstActivity extends HomeActivity {
 
     private Button confirmerIntervenant;
-    private SearchableSpinner selectorIntervenants;
+    private MultiSpinnerSearch searchMultiSpinnerUnlimited;
     private ArrayList<User> users;
-    private Db_gest db;
-    private Toolbar toolbar;
+    private Db_Invenantaire db;
+    private TextView intervenantPrincipale;
+
     private ImageButton newIntervenant;
+    private Session session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +55,9 @@ public class FirstActivity extends HomeActivity {
        View view = getLayoutInflater().inflate(R.layout.content_first, frameLayout);
         setTitle("Select intervenant");
         activityId = R.layout.content_first;
+        session = new Session(this);
 
+        intervenantPrincipale = (TextView) view.findViewById(R.id.intervenantPrincipale);
 
 
 
@@ -54,28 +68,73 @@ public class FirstActivity extends HomeActivity {
                 final Dialog dialog = new Dialog(FirstActivity.this);
                 dialog.setContentView(R.layout.add_invetervenant);
 
-                EditText input_client = (EditText) dialog.findViewById(R.id.input_intervenant);
+                final EditText input_client = (EditText) dialog.findViewById(R.id.input_intervenant);
                 Button btn_creer = (Button)dialog.findViewById(R.id.btn_create_intervenant);
                 Button btn_annuler = (Button)dialog.findViewById(R.id.btn_annuler);
+
+                btn_creer.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        db.insererIntervenant(input_client.getText().toString());
+                       // searchMultiSpinnerUnlimited.getAdapter
+                        dialog.dismiss();
+
+                    }
+                });
                 btn_annuler.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         dialog.dismiss();
                     }
                 });
+
+
+
                 dialog.show();
             }
         });
 
 
-        db = new Db_gest(this,16);
+        db = new Db_Invenantaire(this,1);
+        List<Site> sites = db.getAllSites();
+        List<Client> clients = db.getAllClients();
+        for(Client c: clients){
+            Log.e("Client ",c.toString());
+        }
+        for(Site site : sites){
+            Log.e("Site ",site.toString());
+        }
 
 
         users = db.getALLUser();
 
         confirmerIntervenant = (Button) view.findViewById(R.id.validerIntervenant);
-        selectorIntervenants = (SearchableSpinner) view.findViewById(R.id.selectedIntervenant);
-        selectorIntervenants.setAdapter(new SpinnerAdapter(this,R.layout.model,users));
+        final List<Intervenant> list = db.getAllIntervenants();
+
+        final List<KeyPairBoolData> listArray0 = new ArrayList<>();
+
+        for (int i = 0; i < list.size(); i++) {
+            KeyPairBoolData h = new KeyPairBoolData();
+            h.setId(i + 1);
+            h.setName(list.get(i).getNomIntervenant());
+            h.setSelected(false);
+            listArray0.add(h);
+        }
+
+        searchMultiSpinnerUnlimited = (MultiSpinnerSearch) findViewById(R.id.searchMultiSpinnerUnlimited);
+        searchMultiSpinnerUnlimited.setItems(listArray0, -1, new SpinnerListener() {
+
+            @Override
+            public void onItemsSelected(List<KeyPairBoolData> items) {
+
+                for (int i = 0; i < items.size(); i++) {
+                    if (items.get(i).isSelected()) {
+                        //Log.i("Select", i + " : " + items.get(i).getName() + " : " + items.get(i).isSelected());
+                        Toast.makeText(getApplicationContext(),"Selected "+items.get(i).getName()+":"+items.get(i).isSelected(),Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
 
 
        confirmerIntervenant.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +151,8 @@ public class FirstActivity extends HomeActivity {
         });
 
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -7,10 +7,9 @@ import java.util.ArrayList;
  * Created by mehdibouhafs on 04/07/2017.
  */
 
-public class ProduitInventaire implements Serializable {
+public class ProduitInventaire extends Produit implements Serializable {
 
-    private int id;
-    private String idProduit;
+    private int idProduitInventaire;
     private String nInventaire;
     private String SN;
     private String nomPoste;
@@ -19,15 +18,16 @@ public class ProduitInventaire implements Serializable {
     private boolean electriciteSepare;
     private boolean onduleurOperationnel;
     private String collaborateur;
-    private Produit produit;
 
 
     public ProduitInventaire() {
     }
 
+    public ProduitInventaire(String modele, String equipement, String marque, String matricule,
+                             String nInventaire, String SN,String collaborateur, String nomPoste, String addIp, boolean dhcp,
+                             boolean electriciteSepare, boolean onduleurOperationnel) {
 
-    public ProduitInventaire(String idProduit, String nInventaire, String SN, String nomPoste, String addIp, boolean dhcp, boolean electriciteSepare, boolean onduleurOperationnel, String collaborateur) {
-        this.idProduit = idProduit;
+        super(modele, equipement, marque, matricule);
         this.nInventaire = nInventaire;
         this.SN = SN;
         this.nomPoste = nomPoste;
@@ -38,41 +38,13 @@ public class ProduitInventaire implements Serializable {
         this.collaborateur = collaborateur;
     }
 
-    public ProduitInventaire(int id, String idProduit, String nInventaire, String SN, String nomPoste, String addIp, boolean dhcp, boolean electriciteSepare, boolean onduleurOperationnel, String collaborateur) {
-        this.id = id;
-        this.idProduit = idProduit;
-        this.nInventaire = nInventaire;
-        this.SN = SN;
-        this.nomPoste = nomPoste;
-        this.addIp = addIp;
-        this.dhcp = dhcp;
-        this.electriciteSepare = electriciteSepare;
-        this.onduleurOperationnel = onduleurOperationnel;
-        this.collaborateur = collaborateur;
+
+    public int getIdProduitInventaire() {
+        return idProduitInventaire;
     }
 
-    public Produit getProduit() {
-        return produit;
-    }
-
-    public void setProduit(Produit produit) {
-        this.produit = produit;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getIdProduit() {
-        return idProduit;
-    }
-
-    public void setIdProduit(String idProduit) {
-        this.idProduit = idProduit;
+    public void setIdProduitInventaire(int idProduitInventaire) {
+        this.idProduitInventaire = idProduitInventaire;
     }
 
     public String getnInventaire() {
@@ -141,19 +113,6 @@ public class ProduitInventaire implements Serializable {
 
 
 
-    @Override
-    public String toString() {
-        return "ProduitInventaire{" +
-                "id='" + id + '\'' +
-                ", idProduit='" + idProduit + '\'' +
-                ", nInventaire=" + nInventaire +
-                ", SN='" + SN + '\'' +
-                ", nomPoste='" + nomPoste + '\'' +
-                ", addIp='" + addIp + '\'' +
-                ", dhcp=" + dhcp +
-                ", electriciteSepare=" + electriciteSepare +
-                ", onduleurOperationnel=" + onduleurOperationnel +
-                ", collaborateur='" + collaborateur + '\'' +
-                '}';
-    }
+
+
 }

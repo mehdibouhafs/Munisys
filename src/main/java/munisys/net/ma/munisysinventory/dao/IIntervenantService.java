@@ -10,9 +10,11 @@ import munisys.net.ma.munisysinventory.entities.Produit;
  */
 
 public interface IIntervenantService {
-    public void insererIntervenant(String nomIntervenant);
+    public boolean insererIntervenant(String nomIntervenant);
     public void deleteIntervenant(int id);
     public void majIntervenant(int id, String nomIntervenant);
     public Intervenant getIntervenant(int id);
     public ArrayList<Intervenant> getAllIntervenants();
+    //public ArrayList<Intervenant> getIntervenantsInventaire(int idInventaire);
+    public Boolean getIntervenantBoolean(String nomIntervenant);
 }

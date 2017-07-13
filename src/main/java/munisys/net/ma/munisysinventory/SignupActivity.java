@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import munisys.net.ma.munisysinventory.dao.Db_Invenantaire;
 import munisys.net.ma.munisysinventory.dao.Db_gest;
 import munisys.net.ma.munisysinventory.entities.User;
 
@@ -29,7 +31,7 @@ public class SignupActivity extends AppCompatActivity {
     private User user;
 
 
-    private Db_gest db;
+    private Db_Invenantaire db;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +46,7 @@ public class SignupActivity extends AppCompatActivity {
         _loginLink = (TextView) findViewById(R.id.link_login);
         user = new User();
 
-        db = new Db_gest(this,16);
+        db = new Db_Invenantaire(this,11);
 
 
         progressDialog = new ProgressDialog(SignupActivity.this,

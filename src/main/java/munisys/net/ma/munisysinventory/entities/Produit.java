@@ -14,8 +14,6 @@ public class Produit implements Serializable {
     private String matricule;
 
 
-
-
     public Produit() {
     }
 

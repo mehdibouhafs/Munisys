@@ -13,6 +13,7 @@ import org.junit.runners.MethodSorters;
 
 import java.util.ArrayList;
 
+import munisys.net.ma.munisysinventory.dao.Db_Invenantaire;
 import munisys.net.ma.munisysinventory.dao.Db_gest;
 import munisys.net.ma.munisysinventory.entities.Intervenant;
 import munisys.net.ma.munisysinventory.entities.Produit;
@@ -26,7 +27,7 @@ import static org.junit.Assert.assertEquals;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ProduitDbTest {
 
-    private Db_gest db;
+    private Db_Invenantaire db;
 
     private Context context;
 
@@ -35,40 +36,35 @@ public class ProduitDbTest {
     @Before
     public void instantiate(){
         this.context = InstrumentationRegistry.getTargetContext();
-        this.db = new Db_gest(context,13);
+        this.db = new Db_Invenantaire(context,2);
     }
 
-    @Test
-    public void insert_isCorrect() throws Exception {
-        this.db.insererProduit("C9F26AA","Ecran Pc","HP","4 240");
-        this.db.insererProduit("AY032AV","PC bureau","HP","4 240");
-        this.db.insererProduit("CE399AE","Imprimante","HP","4 240");
-        this.db.insererProduit("CR399AE","Imprimante","HP","4 240");
-        this.db.insererProduit("CY399AE","Imprimante","HP","4 240");
 
-        ArrayList<Produit> produits =  this.db.getAllProduits();
-        for (Produit e:produits
-             ) {
-            Log.e("produit ",e.getModele() +" id " + e.getEquipement());
-        }
-        assertEquals(produits.size(), 5);
-    }
 
     @Test
     public void get_isCorrect() throws Exception {
         Produit produit =  this.db.getProduit("AY032AV");
 
+        Log.e("produit ",produit.getModele() +" id " + produit.getEquipement());
         assertEquals(produit.getModele(), "AY032AV");
     }
 
+
     @Test
-    public void maj_isCorrect() throws Exception {
-        this.db.majProduit("AY032AV","CXFPEM","Souris","HP","4250");
-        assertEquals(this.db.getProduit("CXFPEM").getModele(), "CXFPEM");
+    public void insert_isCorrect() throws Exception {
+        /*this.db.insererProduit("C9F26AA","Ecran Pc","HP","4 240");
+        this.db.insererProduit("AY032AV","PC bureau","HP","4 240");
+        this.db.insererProduit("CE399AE","Imprimante","HP","4 240");
+        this.db.insererProduit("CR399AE","Imprimante","HP","4 240");
+        this.db.insererProduit("CY399AE","Imprimante","HP","4 240");*/
+
+        ArrayList<Produit> produits =  this.db.getAllProduits();
+        for (Produit e:produits
+                ) {
+            Log.e("produit ",e.getModele() +" id " + e.getEquipement());
+        }
+        assertEquals(produits.size(), 5);
     }
-
-
-
     // Intervenant
 
    /* @Test

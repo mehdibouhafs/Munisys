@@ -14,8 +14,8 @@ import org.junit.runners.MethodSorters;
 import java.util.ArrayList;
 
 import munisys.net.ma.munisysinventory.dao.Db_Invenantaire;
-import munisys.net.ma.munisysinventory.dao.Db_gest;
 import munisys.net.ma.munisysinventory.entities.Intervenant;
+import munisys.net.ma.munisysinventory.entities.IntervenantInventaire;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,7 +24,7 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(AndroidJUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class IntervenantDbTest {
+public class IntervenantInventaireDbTest {
 
     private Db_Invenantaire db;
 
@@ -41,26 +41,36 @@ public class IntervenantDbTest {
 
     @Test
     public void get_isCorrect() throws Exception {
-        Intervenant intervenant =  this.db.getIntervenant(2);
-        Log.e("Get intervenant ",intervenant.getNomIntervenant() +" id " + intervenant.getId());
-        assertEquals(intervenant.getId(), 2);
+        ArrayList<Intervenant> intervenants =  this.db.getIntervenantsInventaire(1);
+
+        for (Intervenant e:intervenants
+             ) {
+            Log.e("Get intervenant ",e.getNomIntervenant() +" id " + e.getId());
+        }
+
+        assertEquals(intervenants.size(), 2);
     }
 
 
 
     @Test
     public void insert_isCorrect() throws Exception {
-        /*this.db.insererIntervenant("testIntervenant0");
+       /* this.db.insererIntervenant("testIntervenant");
         this.db.insererIntervenant("testIntervenant1");
         this.db.insererIntervenant("testIntervenant2");
-        this.db.insererIntervenant("testIntervenant3");
-        this.db.insererIntervenant("testIntervenant4");*/
-        ArrayList<Intervenant> intervenants =  this.db.getAllIntervenants();
-        for (Intervenant e:intervenants
+        this.db.insererIntervenant("testIntervenant1");
+        this.db.insererIntervenant("testIntervenant2");*/
+      /* this.db.insererIntervenantInventaire(1,2);
+        this.db.insererIntervenantInventaire(1,1);*/
+        //this.db.insererIntervenantInventaire(3,7);
+        //this.db.insererIntervenantInventaire(2,3);
+
+        ArrayList<IntervenantInventaire> intervenants =  this.db.getAllIntervenantInventaire(1);
+        for (IntervenantInventaire e:intervenants
                 ) {
-            Log.e("intervenant ",e.getNomIntervenant() +" id " + e.getId());
+            Log.e("iven id ",e.getInventaireId() +" intervenat " + e.getIntervenantId());
         }
-        assertEquals(intervenants.size(), 5);
+       // assertEquals(intervenants.size(), 5);
     }
 
 

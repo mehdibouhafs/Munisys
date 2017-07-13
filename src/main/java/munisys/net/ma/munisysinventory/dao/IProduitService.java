@@ -14,5 +14,6 @@ public interface IProduitService {
     public void majProduit(String modele1,String modele,String equipement,String marque,String matricule);
     public Produit getProduit(String modele);
     public ArrayList<Produit> getAllProduits();
+    public Boolean getProduitBoolean(String modele,String equipement,String marque,String matricule);
 
 }

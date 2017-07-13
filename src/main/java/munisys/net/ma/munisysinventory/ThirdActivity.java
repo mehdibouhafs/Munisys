@@ -31,6 +31,7 @@ import java.util.ArrayList;
 
 import munisys.net.ma.munisysinventory.adapters.AdaptorForProduit;
 import munisys.net.ma.munisysinventory.adapters.SpinnerAdapter;
+import munisys.net.ma.munisysinventory.dao.Db_Invenantaire;
 import munisys.net.ma.munisysinventory.dao.Db_gest;
 import munisys.net.ma.munisysinventory.entities.Client;
 import munisys.net.ma.munisysinventory.entities.Intervenant;
@@ -45,7 +46,7 @@ public class ThirdActivity extends HomeActivity {
     private FloatingActionButton addOther;
     private AdaptorForProduit mAdaptorForProduit;
     private RecyclerView recyclerView;
-    private Db_gest db;
+    private Db_Invenantaire db;
     private TextView equipement,marque,matricule,nbProduits,nInventaire,sn;
     private ImageButton newModele;
     private MenuItem search;
@@ -74,7 +75,7 @@ public class ThirdActivity extends HomeActivity {
         layoutMaMa.setVisibility(LinearLayout.GONE);
         layoutSn.setVisibility(LinearLayout.GONE);
 
-        db = new Db_gest(this,16);
+        db = new Db_Invenantaire(this,1);
 
         mAdaptorForProduit = new AdaptorForProduit(produitInventaires);
         recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
@@ -188,8 +189,11 @@ public class ThirdActivity extends HomeActivity {
             public void onClick(View v) {
                 if(validate()) {
                     ProduitInventaire produitInventaire = new ProduitInventaire();
-                    produitInventaire.setProduit(new Produit(modele.getText().toString(), equipement.getText().toString(),
-                            marque.getText().toString(), matricule.getText().toString()));
+                    produitInventaire.setModele(modele.getText().toString());
+                    produitInventaire.setEquipement(equipement.getText().toString());
+                    produitInventaire.setMatricule(matricule.getText().toString());
+                    produitInventaire.setMarque(marque.getText().toString());
+
                     produitInventaire.setnInventaire(nInventaire.getText().toString());
                     produitInventaire.setCollaborateur(collaborateur.getText().toString());
                     produitInventaire.setDhcp(dhcp.isChecked());

@@ -54,8 +54,8 @@ public class AdaptorForProduit extends RecyclerView.Adapter<AdaptorForProduit.My
         final ProduitInventaire produit = list_don_filtred.get(position);
         //Log.e("Produit",produit.toString());
         holder.collaborateur.setText("Collaborateur : "+produit.getCollaborateur());
-        holder.equipement.setText("Equipement : "+produit.getProduit().getEquipement());
-        holder.modele.setText("Modèle : " +produit.getProduit().getModele());
+        holder.equipement.setText("Equipement : "+produit.getEquipement());
+        holder.modele.setText("Modèle : " +produit.getModele());
         holder.nInventaire.setText("N° inventaire : "+produit.getnInventaire());
         holder.sn.setText("Numero de serie : "+produit.getSN());
         holder.onduleurOperationnel.setChecked(produit.isOnduleurOperationnel());
@@ -63,21 +63,21 @@ public class AdaptorForProduit extends RecyclerView.Adapter<AdaptorForProduit.My
         holder.nomPoste.setText("Nom du Poste"+produit.getNomPoste());
         holder.addip.setText("Adresse ip : "+produit.getAddIp());
         holder.dhcp.setChecked(produit.isDhcp());
-        holder.matricule.setText("Matricule : "+produit.getProduit().getEquipement());
-        holder.marque.setText("Marque : "+produit.getProduit().getMarque());
+        holder.matricule.setText("Matricule : "+produit.getEquipement());
+        holder.marque.setText("Marque : "+produit.getMarque());
 
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ctx);
                 builder.setTitle("Confirm");
-                builder.setMessage("êtes-vous sur de vouloir supprimer le produit = "+produit.getProduit().getModele() + " ?");
+                builder.setMessage("êtes-vous sur de vouloir supprimer le produit = "+produit.getModele() + " ?");
 
                 builder.setPositiveButton("Supprimer", new DialogInterface.OnClickListener(){
 
                     public void onClick(DialogInterface dialog, int which) {
                         // Do nothing but close the dialog
-                        Toast.makeText(ctx,"Produit supprimer avec succès : "+produit.getProduit().getModele(),Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ctx,"Produit supprimer avec succès : "+produit.getModele(),Toast.LENGTH_SHORT).show();
                         list_don.remove(position);
                         notifyDataSetChanged();
                         dialog.dismiss();

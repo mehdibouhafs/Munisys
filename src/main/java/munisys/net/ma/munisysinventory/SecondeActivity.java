@@ -32,6 +32,7 @@ import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 import java.util.ArrayList;
 
 import munisys.net.ma.munisysinventory.adapters.SpinnerAdapter;
+import munisys.net.ma.munisysinventory.dao.Db_Invenantaire;
 import munisys.net.ma.munisysinventory.dao.Db_gest;
 import munisys.net.ma.munisysinventory.entities.Client;
 import munisys.net.ma.munisysinventory.entities.Intervenant;
@@ -45,7 +46,7 @@ public class SecondeActivity extends HomeActivity implements AdapterView.OnItemS
     private SearchableSpinner client,site;
     private TextInputLayout input_burreauEtage, input_serviceCentre, input_direction;
     private ArrayList<Client> clients;
-    private Db_gest db;
+    private Db_Invenantaire db;
     private ArrayList<Site> sites;
     private TextView ville,contact,tel;
     private SpinnerAdapter<Client> adapterClient;
@@ -63,7 +64,7 @@ public class SecondeActivity extends HomeActivity implements AdapterView.OnItemS
         View view = getLayoutInflater().inflate(R.layout.content_seconde, frameLayout);
         activityId = R.layout.content_seconde;
         setTitle("Identification");
-        db = new Db_gest(this,16);
+        db = new Db_Invenantaire(this,1);
 
         newClient = (ImageButton) view.findViewById(R.id.newClient);
         newSite = (ImageButton) view.findViewById(R.id.newSite);
@@ -100,7 +101,7 @@ public class SecondeActivity extends HomeActivity implements AdapterView.OnItemS
                         final String contact = input_contact.getText().toString();
                         final String tel = input_tel.getText().toString();
                         final String ville = selectedVille.getSelectedItem().toString();
-                        int clientId = db.insererClient2(client1,site,ville,contact,tel);
+                        int clientId = db.insererClient2(client1);
                         db.insererSite(site,ville,clientId);
                         client.setAdapter(new SpinnerAdapter(getApplicationContext(),R.layout.model,db.getAllClients()));
                         dialog.dismiss();
@@ -160,7 +161,7 @@ public class SecondeActivity extends HomeActivity implements AdapterView.OnItemS
         });
 
 
-        db = new Db_gest(this,16);
+        db = new Db_Invenantaire(this,1);
         clients = db.getAllClients();
         validerIdentification = (Button) view.findViewById(R.id.validerIdentification);
         burreauEtage = (EditText) view.findViewById(R.id.burreauEtage);
@@ -202,11 +203,11 @@ public class SecondeActivity extends HomeActivity implements AdapterView.OnItemS
                 Intent intent = new Intent(SecondeActivity.this,ThirdActivity.class);
                 final Bundle bundle = new Bundle();
                 Client client = new Client();
-                client.setBurreauEtage(burreauEtage.getText().toString());
-                client.setDirection(direction.getText().toString());
+                //client.setBurreauEtage(burreauEtage.getText().toString());
+                //client.setDirection(direction.getText().toString());
                 client.setClient(client.getClient());
-                client.setVille("FES");
-                client.setSite("ABOU FARES 2");
+                //client.setVille("FES");
+                //client.setSite("ABOU FARES 2");
                 bundle.putSerializable("client",client);
                 //bundle.putSerializable("intervenant",intervenant);
                 intent.putExtras(bundle);
@@ -296,8 +297,8 @@ public class SecondeActivity extends HomeActivity implements AdapterView.OnItemS
                 ArrayList<Site> site1 = db.getSitesClient(client1.getId());
                 Toast.makeText(getApplicationContext(),"Client Selected",Toast.LENGTH_SHORT).show();
                 afficher_list(site1);
-                contact.setText(client1.getContact());
-                tel.setText(client1.getTelephone());
+                //contact.setText(client1.getContact());
+                //tel.setText(client1.getTelephone());
                 layoutVille.setVisibility(LinearLayout.GONE);
                 layoutContact.setVisibility(LinearLayout.GONE);
                 layoutTel.setVisibility(LinearLayout.GONE);

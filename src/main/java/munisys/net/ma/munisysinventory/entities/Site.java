@@ -6,34 +6,33 @@ package munisys.net.ma.munisysinventory.entities;
 
 public class Site {
 
-    private int id;
+    private int idSite;
+    private int clientId;
     private String site;
     private String ville;
-    private int clientId;
-
 
     public Site() {
     }
 
-    public Site(int id, String site, String ville, int clientId) {
-        this.id = id;
+    public Site(int idSite, int clientId, String site, String ville) {
+        this.idSite = idSite;
+        this.clientId = clientId;
         this.site = site;
         this.ville = ville;
-        this.clientId = clientId;
     }
 
-    public Site(String site, String ville, int clientId) {
+    public Site(int clientId, String site, String ville) {
+        this.clientId = clientId;
         this.site = site;
         this.ville = ville;
-        this.clientId = clientId;
     }
 
-    public int getId() {
-        return id;
+    public int getIdSite() {
+        return idSite;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdSite(int idSite) {
+        this.idSite = idSite;
     }
 
     public String getSite() {
@@ -59,6 +58,8 @@ public class Site {
     public void setClientId(int clientId) {
         this.clientId = clientId;
     }
+
+
 
     @Override
     public String toString() {

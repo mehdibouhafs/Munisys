@@ -14,10 +14,9 @@ import org.junit.runners.MethodSorters;
 import java.util.ArrayList;
 
 import munisys.net.ma.munisysinventory.dao.Db_Client;
-import munisys.net.ma.munisysinventory.dao.Db_Invenantaire;
 import munisys.net.ma.munisysinventory.dao.Db_gest;
 import munisys.net.ma.munisysinventory.entities.Client;
-import munisys.net.ma.munisysinventory.entities.Intervenant;
+import munisys.net.ma.munisysinventory.entities.User;
 
 import static org.junit.Assert.assertEquals;
 
@@ -26,9 +25,9 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(AndroidJUnit4.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class ClientDbTest {
+public class UserDbTest {
 
-    private Db_Invenantaire db;
+    private Db_Client db;
 
     private Context context;
 
@@ -37,39 +36,34 @@ public class ClientDbTest {
     @Before
     public void instantiate(){
         this.context = InstrumentationRegistry.getTargetContext();
-        this.db = new Db_Invenantaire(context,8);
+        this.db = new Db_Client(context,2);
     }
 
 
 
     @Test
     public void get_isCorrect() throws Exception {
-        Client client =  this.db.getClient(1);
-        Log.e("Client get  ",client.getClient() +" id " + client.getId());
-        assertEquals(client.getId(), 1);
+        User user =  this.db.getUser("a@b.c","123456");
+        Log.e("Client get  ",user.getName() +" id " + user.getEmail());
+        assertEquals(user.getId(), 1);
     }
-
-
 
     @Test
     public void insert_isCorrect() throws Exception {
 
-        //this.db.dropTableClient();
-       /*this.db.insererClient("GCAM");
-        this.db.insererClient("Maroc Bureau");
-        this.db.insererClient("BMCI");
-        this.db.insererClient("Munisys");
-        this.db.insererClient("CIH");*/
 
-        ArrayList<Client> clients =  this.db.getAllClients();
+       /* this.db.insererUser("mehdibouhafs","a@b.c","123456");
+        this.db.insererUser("mehdibouhafs1","a@d.c","123456");
+        this.db.insererUser("mehdibouhafs2","a@d.c","123456");*/
 
-        for (Client e:clients
+        ArrayList<User> users =  this.db.getALLUser();
+        for (User e:users
                 ) {
-            Log.e("Client ",e.getClient() +" id " + e.getId());
+            Log.e("user  ",e.getName() +" id " + e.getEmail());
         }
-        this.db.insererClient("GCAM");
-        assertEquals(this.db.insererClient("GCAM"),false);
+        assertEquals(users.size(), 2); //same email
     }
+
 
     // Intervenant
 

@@ -49,10 +49,10 @@ public class AdaptorForInventory extends RecyclerView.Adapter<AdaptorForInventor
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Inventaire inventaire = list_don_filtred.get(position);
         holder.client.setText("Client : "+inventaire.getClient().getClient());
-        holder.site.setText("Site : "+inventaire.getClient().getSite());
-        holder.serviceCentre.setText("Service/Centre : " +inventaire.getClient().getServiceCentre());
-        holder.ville.setText("Ville : "+inventaire.getClient().getVille());
-        holder.burreauEtage.setText("Burreau/Etage : "+inventaire.getClient().getBurreauEtage());
+        holder.site.setText("Site : "+inventaire.getSiteInventaire().getSite());
+        holder.serviceCentre.setText("Service/Centre : " +inventaire.getSiteInventaire().getServiceCentre());
+        holder.ville.setText("Ville : "+inventaire.getSiteInventaire().getVille());
+        holder.burreauEtage.setText("Burreau/Etage : "+inventaire.getSiteInventaire().getBurreauEtage());
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
         holder.date.setText("Date: "+dateFormat.format(inventaire.getDateInventaire()));
@@ -79,7 +79,7 @@ public class AdaptorForInventory extends RecyclerView.Adapter<AdaptorForInventor
 
                     for (Inventaire inventaire : list_don) {
 
-                        if (inventaire.getClient().getClient().toLowerCase().contains(charString) || inventaire.getIntervenant().getNomIntervenant().toLowerCase().contains(charString)) {
+                        if (inventaire.getClient().getClient().toLowerCase().contains(charString)) {
                             filteredList.add(inventaire);
                         }
                     }
