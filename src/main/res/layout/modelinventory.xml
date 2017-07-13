@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="150dip"
+    android:layout_margin="5dp"
+    android:background="@drawable/background_border"
+    android:padding="6dip"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageClient1"
+            android:layout_width="63dp"
+            android:layout_height="101dp"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/credi" />
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/client1"
+                android:layout_width="197dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:text="Client :"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/date1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:text="Date : " />
+
+            <TextView
+                android:id="@+id/site1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:text="Site" />
+
+            <TextView
+                android:id="@+id/ville1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:text="Ville :" />
+
+            <TextView
+                android:id="@+id/serviceCentre1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:text="Service / Centre :"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/burreauEtage1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:text="Burreau / Etage :"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+
+            android:background="@drawable/eye" />
+    </LinearLayout>
+
+</RelativeLayout>

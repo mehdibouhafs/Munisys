@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="50dp"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="133dp"
+            android:layout_weight="0.90"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/client"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:text="Client :"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:text="Date : " />
+
+            <TextView
+                android:id="@+id/site"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:text="Site" />
+
+            <TextView
+                android:id="@+id/ville"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:text="Ville :" />
+
+            <TextView
+                android:id="@+id/serviceCentre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:text="Service / Centre :"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/burreauEtage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:text="Burreau / Etage :"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/intervenant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="2dp"
+                android:text="Intervenant :"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/credi" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/empEquipement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Emplacement correct des Equipements" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/depoussierage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Dépoussierage" />
+
+        <CheckBox
+            android:id="@+id/majAntivirus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Maj Antivirus" />
+
+        <CheckBox
+            android:id="@+id/etatCablage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Etat du cablage" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/valider"
+        android:layout_width="209dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:text="Valider" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/my_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical" />
+
+</LinearLayout>
+

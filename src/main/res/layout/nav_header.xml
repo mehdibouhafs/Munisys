@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="190dp"
+    android:background="@color/navigationBarColor"
+    android:orientation="vertical"
+    android:paddingBottom="20dp"
+    android:paddingTop="20dp">
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/ic_person" />
+
+
+    <TextView
+        android:id="@+id/name_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:text=" Intervenant Bouhafs Mehdi"
+        android:textColor="@color/White"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/logout" />
+</LinearLayout>

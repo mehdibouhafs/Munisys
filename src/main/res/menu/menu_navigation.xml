@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:title="Home"
+            android:icon="@mipmap/ic_launcher"/>
+        <item
+            android:id="@+id/newInventaire"
+            android:title="New Inventaire"
+            android:icon="@drawable/listeinventaire"/>
+        <item
+            android:id="@+id/allInventaire"
+            android:title="All Inventaires"
+            android:icon="@drawable/allinventaire"/>
+
+        <item
+            android:id="@+id/newIntervenant"
+            android:title="New Intervenant"
+            android:icon="@drawable/newintervenant"/>
+        <item
+            android:id="@+id/allintervenant"
+            android:title="All Intervenant"
+            android:icon="@drawable/allintervenant"/>
+        <item
+            android:id="@+id/help"
+            android:title="Help"
+            android:icon="@drawable/help"/>
+        <item
+            android:id="@+id/settings"
+            android:title="Settings"
+            android:icon="@drawable/ic_setting"/>
+
+    </group>
+</menu>

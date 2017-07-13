@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp"
+    android:paddingTop="36dp">
+
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nouveau Site"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp">
+
+        <EditText
+            android:id="@+id/input_site1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Site"
+            android:inputType="" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Ville "
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+        android:id="@+id/selectedVille1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:entries="@array/villes"
+        android:gravity="center_horizontal"
+        app:hintText="Select Ville" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Client"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+    <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+        android:id="@+id/selectedClient1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_horizontal"
+        app:hintText="Select Client" />
+
+    <!-- Address Label -->
+
+
+    <!-- Signup Button -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_create1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_weight="1"
+            android:padding="12dp"
+            android:text="Creer"
+            android:textAlignment="center" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/btn_annuler1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_weight="1"
+            android:padding="12dp"
+            android:text="Annuler"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+
+</LinearLayout>

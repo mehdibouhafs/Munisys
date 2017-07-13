@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="340dp"
+    app:cardBackgroundColor="@color/accent_">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/background_border"
+        android:orientation="vertical"
+        android:paddingBottom="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="8dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <ImageButton
+                android:id="@+id/btn_dupp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/dup" />
+
+            <ImageButton
+                android:id="@+id/btn_delete"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginLeft="230dp"
+                android:layout_weight="0.01"
+                android:background="@drawable/delete" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/collaborateur1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="40dp"
+            android:text="Collaborateur :"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/equipement1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="40dp"
+            android:text="Equipement :"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/modele1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="40dp"
+            android:text="Modèle : "
+            android:textAlignment="textStart"
+            android:textColor="@android:color/background_dark"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/marque1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="40dp"
+            android:text="Marque :"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/ninventaire1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="40dp"
+            android:text="N°inventaire :"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/nomPoste1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="40dp"
+            android:text="Nom Poste :"
+            android:textAlignment="viewStart"
+            android:textColor="@android:color/background_dark"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/sn1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="40dp"
+            android:text="S.N :"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/matricule1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="40dp"
+            android:text="Matricule :"
+            android:textAlignment="textStart"
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="15dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/addip1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:paddingLeft="35dp"
+                android:text="AddressIp :"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+
+            <CheckBox
+                android:id="@+id/dhcp1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:buttonTint="@color/color_stroke"
+                android:enabled="false"
+                android:paddingLeft="2dp"
+                android:paddingRight="10dp"
+                android:text="DHCP         "
+                android:textColor="@android:color/background_dark"
+                android:textSize="13sp"
+                android:textStyle="italic"
+                android:theme="@style/AppTheme" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:orientation="horizontal"
+            android:paddingLeft="30dp">
+
+            <CheckBox
+                android:id="@+id/onduleurOperationnel1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/color_stroke"
+                android:enabled="false"
+                android:paddingRight="10dp"
+                android:text="Onduleur Opérationnel"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+
+
+            <CheckBox
+                android:id="@+id/electriciteSeparer1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/background_dark"
+                android:buttonTint="@color/color_stroke"
+                android:enabled="false"
+                android:paddingRight="20dp"
+                android:text="Electricité séparer"
+                android:textColor="@android:color/background_dark"
+                android:textSize="13sp" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</android.support.v7.widget.CardView>
