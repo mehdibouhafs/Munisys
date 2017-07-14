@@ -4,28 +4,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="3dp"
     android:orientation="vertical">
 
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="250dp"
-        android:layout_height="100dp"
+        android:layout_width="150dp"
+        android:layout_height="70dp"
         android:layout_alignEnd="@+id/tx4"
         android:layout_alignParentTop="true"
         android:layout_gravity="top|center_horizontal"
-        android:layout_marginBottom="10dp"
         android:background="@drawable/munisys" />
     <!-- app:srcCompat="@drawable/munisys"-->
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_above="@+id/spinner"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="5dp"
         android:scaleType="center"
         android:src="@drawable/user" />
     <!--app:srcCompat="@drawable/user"-->
@@ -33,57 +31,59 @@
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="25dp"
         android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:text="Intervenant Principal"
         android:textAlignment="center"
         android:textColor="@color/color_stroke"
-        android:textSize="26sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/intervenantPrincipale"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
         android:text="Mr Farhat Driss"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="17sp" />
+        android:textSize="16sp" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_above="@+id/spinner"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:scaleType="center"
         android:src="@drawable/group" />
 
     <TextView
         android:id="@+id/textView12"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:layout_marginTop="5dp"
         android:text="Intervenant Adjoints"
         android:textAlignment="center"
         android:textColor="@color/color_stroke"
-        android:textSize="26sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <com.androidbuts.multispinnerfilter.MultiSpinnerSearch
             android:id="@+id/searchMultiSpinnerUnlimited"
-            android:layout_width="260dp"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="40dp"
             app:hintText="Multi Selection With Filter Without Limit" />
 
         <ImageButton
@@ -91,7 +91,6 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="5dp"
             android:background="@drawable/add"
             android:backgroundTint="@android:color/holo_green_light" />
     </LinearLayout>
@@ -104,7 +103,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:background="@color/color_stroke"
         android:drawableRight="@drawable/checked1"
         android:elevation="11dp"

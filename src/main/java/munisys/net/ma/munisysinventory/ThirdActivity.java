@@ -2,6 +2,7 @@ package munisys.net.ma.munisysinventory;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.media.Image;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.MenuItemCompat;
@@ -25,10 +26,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.oem.barcode.BCRIntents;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import java.util.ArrayList;
 
+import munisys.net.ma.munisysinventory.BrodcastReceiver.BCRAppBroadcastReceiver;
 import munisys.net.ma.munisysinventory.adapters.AdaptorForProduit;
 import munisys.net.ma.munisysinventory.adapters.SpinnerAdapter;
 import munisys.net.ma.munisysinventory.dao.Db_Invenantaire;
@@ -42,16 +45,17 @@ public class ThirdActivity extends HomeActivity {
 
     private EditText collaborateur,nomPoste,addIp;
     private CheckBox dhcp,electriciteSeparer,onduleurOperationnel;
-    private EditText modele;
+    private TextView modele;
     private FloatingActionButton addOther;
     private AdaptorForProduit mAdaptorForProduit;
     private RecyclerView recyclerView;
-    private Db_Invenantaire db;
     private TextView equipement,marque,matricule,nbProduits,nInventaire,sn;
-    private ImageButton newModele;
+    private ImageButton scan;
     private MenuItem search;
+    private TextView note;
+    private BCRAppBroadcastReceiver mBroadcastReceiver;
 
-    private LinearLayout layout_form,layoutEquipement,layoutMaMa,layoutSn;
+    private LinearLayout layout_form, layout_group;
 
 
     public boolean checkHide = false;
@@ -62,20 +66,18 @@ public class ThirdActivity extends HomeActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view = getLayoutInflater().inflate(R.layout.content_third, frameLayout);
+        modele = (TextView) view.findViewById(R.id.modele);
+
+
+        note = (TextView) view.findViewById(R.id.note);
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(BCRIntents.ACTION_NEW_DATA);
+
+
         activityId = R.layout.content_third;
         produitInventaires = new ArrayList<>();
         setTitle("Informatiques");
 
-        layout_form = (LinearLayout) findViewById(R.id.layout_form);
-        layoutEquipement = (LinearLayout) findViewById(R.id.layoutEquipement);
-        layoutMaMa = (LinearLayout) findViewById(R.id.layoutMaMa);
-        layoutSn = (LinearLayout) findViewById(R.id.layoutSn);
-
-        layoutEquipement.setVisibility(LinearLayout.GONE);
-        layoutMaMa.setVisibility(LinearLayout.GONE);
-        layoutSn.setVisibility(LinearLayout.GONE);
-
-        db = new Db_Invenantaire(this,1);
 
         mAdaptorForProduit = new AdaptorForProduit(produitInventaires);
         recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view);
@@ -86,17 +88,30 @@ public class ThirdActivity extends HomeActivity {
 
 
 
+
+
         //prepareMovieData();
 
         ArrayList<Produit> produits = db.getAllProduits();
 
-        modele = (EditText) view.findViewById(R.id.modele);
+
        // modele.setAdapter(new SpinnerAdapter(this,R.layout.model,produits));
         //modele.setFocusable(true);
         //modele.setFocusableInTouchMode(true);
         //modele.requestFocus();
-        nbProduits = (TextView) view.findViewById(R.id.nbProduits);
 
+        modele.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // Intent intent = new Intent(getApplicationContext(),ScannerActivity.class);
+                //startActivity(intent);
+            }
+        });
+        /*
+        nbProduits = (TextView) view.findViewById(R.id.nbProduits);*/
+        layout_group = (LinearLayout) view.findViewById(R.id.layout_group);
+        layout_group.setVisibility(LinearLayout.GONE);
+        layout_form = (LinearLayout) view.findViewById(R.id.layout_form);
         equipement = (TextView) view.findViewById(R.id.equipement);
         equipement.clearFocus();
         marque = (TextView) view.findViewById(R.id.marque);
@@ -104,6 +119,7 @@ public class ThirdActivity extends HomeActivity {
         nInventaire = (TextView) view.findViewById(R.id.nInventaire);
         sn = (TextView) view.findViewById(R.id.sn);
         collaborateur = (EditText) view.findViewById(R.id.collaborateur);
+
         nomPoste = (EditText) view.findViewById(R.id.nomPoste);
         addIp = (EditText) view.findViewById(R.id.addip);
 
@@ -112,18 +128,28 @@ public class ThirdActivity extends HomeActivity {
         onduleurOperationnel = (CheckBox) view.findViewById(R.id.onduleurOperationnel);
         addOther = (FloatingActionButton) view.findViewById(R.id.ajouterMateriel);
         //confirmer = (Button) view.findViewById(R.id.confirmer);
+        collaborateur.setEnabled(false);
+        nomPoste.setEnabled(false);
+        addIp.setEnabled(false);
+        dhcp.setEnabled(false);
+        electriciteSeparer.setEnabled(false);
+        onduleurOperationnel.setEnabled(false);
 
-        Intent intent = getIntent();
-        Bundle b = intent.getExtras();
+
+        mBroadcastReceiver = new BCRAppBroadcastReceiver(this,modele,collaborateur,nomPoste,addIp,dhcp,
+                electriciteSeparer,onduleurOperationnel,layout_group,note,equipement,marque,matricule,sn,nInventaire);
+        this.getApplicationContext().registerReceiver(mBroadcastReceiver, filter);
+        //Intent intent = getIntent();
+        //Bundle b = intent.getExtras();
         //final Intervenant intervenant = (Intervenant) b.get("intervenant");
         //final Client client = (Client) b.get("client");
 
-        newModele = (ImageButton) view.findViewById(R.id.addModele);
+        /*scan = (ImageButton) view.findViewById(R.id.scanner);
 
-        newModele.setOnClickListener(new View.OnClickListener() {
+        scan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Dialog dialog = new Dialog(ThirdActivity.this);
+                /*final Dialog dialog = new Dialog(ThirdActivity.this);
                 dialog.setContentView(R.layout.add_modele);
 
                 final EditText input_modele = (EditText) dialog.findViewById(R.id.input_modele);
@@ -155,7 +181,12 @@ public class ThirdActivity extends HomeActivity {
                 });
                 dialog.show();
             }
-        });
+                Intent intent = new Intent();
+                intent.setAction("android.intent.action.bcr.newdata");
+                sendBroadcast(intent);
+
+            }
+        });*/
 
         modele.addTextChangedListener(new TextWatcher() {
             @Override
@@ -165,9 +196,7 @@ public class ThirdActivity extends HomeActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                layoutMaMa.setVisibility(LinearLayout.GONE);
-                layoutEquipement.setVisibility(LinearLayout.GONE);
-                layoutSn.setVisibility(LinearLayout.GONE);
+
             }
 
             @Override
@@ -176,9 +205,7 @@ public class ThirdActivity extends HomeActivity {
                // Produit produit = (Produit) parent.getItemAtPosition(position);
                 //equipement.setText(produit.getEquipement());
                 //matricule.setText(produit.getMatricule());
-                layoutMaMa.setVisibility(LinearLayout.VISIBLE);
-                layoutEquipement.setVisibility(LinearLayout.VISIBLE);
-                layoutSn.setVisibility(LinearLayout.VISIBLE);
+
 
             }
         })
@@ -197,7 +224,6 @@ public class ThirdActivity extends HomeActivity {
                     produitInventaire.setnInventaire(nInventaire.getText().toString());
                     produitInventaire.setCollaborateur(collaborateur.getText().toString());
                     produitInventaire.setDhcp(dhcp.isChecked());
-                    produitInventaire.setSN(sn.getText().toString());
                     produitInventaire.setAddIp(addIp.getText().toString());
                     produitInventaire.setNomPoste(nomPoste.getText().toString());
                     produitInventaire.setElectriciteSepare(electriciteSeparer.isChecked());

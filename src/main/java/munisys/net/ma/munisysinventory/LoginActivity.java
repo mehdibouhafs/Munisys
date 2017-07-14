@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         _loginButton = (Button) findViewById(R.id.btn_login);
         _signupLink = (TextView) findViewById(R.id.link_signup);
 
-        db = new Db_Invenantaire(this,1);
+        db = new Db_Invenantaire(this,11);
         List<User> users = db.getALLUser();
         for (User e : users){
             Log.e("User " , e.toString());
@@ -119,11 +119,12 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Toast.makeText(getApplicationContext(),"LOGINIIII",Toast.LENGTH_SHORT).show();
+
         if(requestCode == 11 && resultCode == Activity.RESULT_OK) {
 
             session.setLoggedIn(true, (User) data.getSerializableExtra("user"));
             Intent intent = new Intent(this,MenuActivity.class);
+            Toast.makeText(getApplicationContext(),"Bienvenue "+ ((User) data.getSerializableExtra("user")).getName(),Toast.LENGTH_SHORT).show();
             startActivity(intent);
             finish();
         }

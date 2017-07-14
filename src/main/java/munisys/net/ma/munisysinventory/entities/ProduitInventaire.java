@@ -10,8 +10,6 @@ import java.util.ArrayList;
 public class ProduitInventaire extends Produit implements Serializable {
 
     private int idProduitInventaire;
-    private String nInventaire;
-    private String SN;
     private String nomPoste;
     private String addIp;
     private boolean dhcp;
@@ -24,12 +22,10 @@ public class ProduitInventaire extends Produit implements Serializable {
     }
 
     public ProduitInventaire(String modele, String equipement, String marque, String matricule,
-                             String nInventaire, String SN,String collaborateur, String nomPoste, String addIp, boolean dhcp,
+                             String nInventaire, String sn,String collaborateur, String nomPoste, String addIp, boolean dhcp,
                              boolean electriciteSepare, boolean onduleurOperationnel) {
 
-        super(modele, equipement, marque, matricule);
-        this.nInventaire = nInventaire;
-        this.SN = SN;
+        super(modele, equipement, marque, matricule,sn,nInventaire);
         this.nomPoste = nomPoste;
         this.addIp = addIp;
         this.dhcp = dhcp;
@@ -45,22 +41,6 @@ public class ProduitInventaire extends Produit implements Serializable {
 
     public void setIdProduitInventaire(int idProduitInventaire) {
         this.idProduitInventaire = idProduitInventaire;
-    }
-
-    public String getnInventaire() {
-        return nInventaire;
-    }
-
-    public void setnInventaire(String nInventaire) {
-        this.nInventaire = nInventaire;
-    }
-
-    public String getSN() {
-        return SN;
-    }
-
-    public void setSN(String SN) {
-        this.SN = SN;
     }
 
     public String getNomPoste() {
@@ -110,7 +90,6 @@ public class ProduitInventaire extends Produit implements Serializable {
     public void setCollaborateur(String collaborateur) {
         this.collaborateur = collaborateur;
     }
-
 
 
 

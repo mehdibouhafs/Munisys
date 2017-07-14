@@ -26,14 +26,12 @@ public class Db_ProduitInventaire extends Db_Produit implements IProduitInventai
     // nInventaire Text,SN Text,nomPoste Text,addIp Text,dhcp Integer,electriciteSepare Integer,onduleurOperationnel Integer,collaborateur Text)");
 
     @Override
-    public void insererProduitInventaire(String idProduit, String nInventaire, String sn, String nomPoste,
+    public void insererProduitInventaire(String idProduit, String nomPoste,
                                          String addIp, Boolean dhcp, Boolean electriciteSepare, Boolean onduleurOperationnel, String collaborateur) {
         SQLiteDatabase db=getWritableDatabase();
         ContentValues valeurs=new ContentValues();
         //valeurs.put("id",id);
         valeurs.put("idProduit",idProduit);
-        valeurs.put("nInventaire",nInventaire);
-        valeurs.put("sn",sn);
         valeurs.put("nomPoste",nomPoste);
         valeurs.put("addIp",addIp);
         valeurs.put("dhcp",dhcp);
@@ -56,12 +54,10 @@ public class Db_ProduitInventaire extends Db_Produit implements IProduitInventai
 
 
     @Override
-    public void majProduitInventaire(int id, String idProduit, String nInventaire, String sn, String nomPoste, String addIp, Boolean dhcp, Boolean electriciteSepare, Boolean onduleurOperationnel, String collaborateur) {
+    public void majProduitInventaire(int id, String idProduit,String nomPoste, String addIp, Boolean dhcp, Boolean electriciteSepare, Boolean onduleurOperationnel, String collaborateur) {
         SQLiteDatabase db=getWritableDatabase();
         ContentValues valeurs=new ContentValues();
         valeurs.put("idProduit",idProduit);
-        valeurs.put("nInventaire",nInventaire);
-        valeurs.put("sn",sn);
         valeurs.put("nomPoste",nomPoste);
         valeurs.put("addIp",addIp);
         valeurs.put("dhcp",dhcp);
@@ -89,7 +85,6 @@ public class Db_ProduitInventaire extends Db_Produit implements IProduitInventai
             //e.setOnduleurOperationnel(cur.getColumnIndex("telephone")));
             //e.setElectriciteSepare(cur.getColumnIndex("telephone")));
             e.setAddIp(cur.getString(cur.getColumnIndex("addIp")));
-            e.setSN(cur.getString(cur.getColumnIndex("matricule")));
         }
         cur.close();
         db.close();

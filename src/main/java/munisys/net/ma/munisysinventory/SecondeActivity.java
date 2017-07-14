@@ -46,7 +46,6 @@ public class SecondeActivity extends HomeActivity implements AdapterView.OnItemS
     private SearchableSpinner client,site;
     private TextInputLayout input_burreauEtage, input_serviceCentre, input_direction;
     private ArrayList<Client> clients;
-    private Db_Invenantaire db;
     private ArrayList<Site> sites;
     private TextView ville,contact,tel;
     private SpinnerAdapter<Client> adapterClient;
@@ -64,7 +63,6 @@ public class SecondeActivity extends HomeActivity implements AdapterView.OnItemS
         View view = getLayoutInflater().inflate(R.layout.content_seconde, frameLayout);
         activityId = R.layout.content_seconde;
         setTitle("Identification");
-        db = new Db_Invenantaire(this,1);
 
         newClient = (ImageButton) view.findViewById(R.id.newClient);
         newSite = (ImageButton) view.findViewById(R.id.newSite);
@@ -84,10 +82,6 @@ public class SecondeActivity extends HomeActivity implements AdapterView.OnItemS
                 dialog.setContentView(R.layout.add_client);
 
                 final EditText input_client = (EditText) dialog.findViewById(R.id.input_client);
-                 final EditText input_site = (EditText) dialog.findViewById(R.id.input_site);
-                final EditText input_contact = (EditText) dialog.findViewById(R.id.input_contact);
-                final EditText input_tel = (EditText) dialog.findViewById(R.id.input_tel);
-                final SearchableSpinner selectedVille = (SearchableSpinner) dialog.findViewById(R.id.selectedVille);
                 Button btn_creer = (Button)dialog.findViewById(R.id.btn_create);
                 Button btn_annuler = (Button)dialog.findViewById(R.id.btn_annuler);
 
@@ -97,12 +91,7 @@ public class SecondeActivity extends HomeActivity implements AdapterView.OnItemS
                     @Override
                     public void onClick(View v) {
                         final String client1 = input_client.getText().toString();
-                        final String site = input_site.getText().toString();
-                        final String contact = input_contact.getText().toString();
-                        final String tel = input_tel.getText().toString();
-                        final String ville = selectedVille.getSelectedItem().toString();
                         int clientId = db.insererClient2(client1);
-                        db.insererSite(site,ville,clientId);
                         client.setAdapter(new SpinnerAdapter(getApplicationContext(),R.layout.model,db.getAllClients()));
                         dialog.dismiss();
                         Toast.makeText(getApplicationContext(),"Nouveau Client Ajouter",Toast.LENGTH_SHORT).show();
@@ -128,8 +117,10 @@ public class SecondeActivity extends HomeActivity implements AdapterView.OnItemS
                 dialog.setContentView(R.layout.add_site);
 
                 final EditText input_site = (EditText) dialog.findViewById(R.id.input_site1);
+                final EditText input_tel = (EditText) dialog.findViewById(R.id.input_tel);
+                final EditText input_contact = (EditText) dialog.findViewById(R.id.input_contact);
                 final SearchableSpinner selectedVille = (SearchableSpinner) dialog.findViewById(R.id.selectedVille1);
-                SearchableSpinner selectedClient = (SearchableSpinner) dialog.findViewById(R.id.selectedClient1);
+                final SearchableSpinner selectedClient = (SearchableSpinner) dialog.findViewById(R.id.selectedClient1);
                 selectedClient.setAdapter(new SpinnerAdapter(getApplicationContext(),R.layout.model,db.getAllClients()));
                 Button btn_create = (Button)dialog.findViewById(R.id.btn_create1);
                 Button btn_annuler = (Button)dialog.findViewById(R.id.btn_annuler1);
@@ -138,13 +129,20 @@ public class SecondeActivity extends HomeActivity implements AdapterView.OnItemS
                     @Override
                     public void onClick(View v) {
                         final String site1 = input_site.getText().toString();
-                        final String ville = selectedVille.getSelectedItem().toString();
-                        final String client = selectedVille.getSelectedItem().toString();
-                        int clientId = db.getClient(client);
-                        db.insererSite(site1,ville,clientId);
-                        site.setAdapter(new SpinnerAdapter(getApplicationContext(),R.layout.model,db.getSitesClient(clientId)));
-                        Toast.makeText(getApplicationContext(),"Nouveau Site Ajouter",Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
+                        final String tel = input_tel.getText().toString();
+                        final String contact = input_contact.getText().toString();
+                        if(selectedClient.getSelectedItem() != null && selectedVille.getSelectedItem() !=null) {
+                            final String ville = selectedVille.getSelectedItem().toString();
+                            final String client = selectedClient.getSelectedItem().toString();
+                            int clientId = db.getClient(client);
+                            Log.e("Client id ", clientId + "Client Name " + client);
+                            db.insererSite(site1, ville, clientId,tel,contact);
+                            site.setAdapter(new SpinnerAdapter(getApplicationContext(), R.layout.model, db.getSitesClient(clientId)));
+                            Toast.makeText(getApplicationContext(), "Nouveau Site Ajouter", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        }else{
+                            Toast.makeText(getApplicationContext(), "Veuillez selectionner le client et la ville", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 
@@ -161,7 +159,6 @@ public class SecondeActivity extends HomeActivity implements AdapterView.OnItemS
         });
 
 
-        db = new Db_Invenantaire(this,1);
         clients = db.getAllClients();
         validerIdentification = (Button) view.findViewById(R.id.validerIdentification);
         burreauEtage = (EditText) view.findViewById(R.id.burreauEtage);
@@ -171,7 +168,7 @@ public class SecondeActivity extends HomeActivity implements AdapterView.OnItemS
         client = (SearchableSpinner) view.findViewById(R.id.client);
          adapterClient =  new SpinnerAdapter(this,R.layout.model,clients);
         client.setFocusable(true);
-        client.setFocusableInTouchMode(true);
+        client.setFocusableInTouchMode(false);
         client.requestFocus();
         client.setAdapter(adapterClient);
         sites = new ArrayList<>();
@@ -297,8 +294,7 @@ public class SecondeActivity extends HomeActivity implements AdapterView.OnItemS
                 ArrayList<Site> site1 = db.getSitesClient(client1.getId());
                 Toast.makeText(getApplicationContext(),"Client Selected",Toast.LENGTH_SHORT).show();
                 afficher_list(site1);
-                //contact.setText(client1.getContact());
-                //tel.setText(client1.getTelephone());
+
                 layoutVille.setVisibility(LinearLayout.GONE);
                 layoutContact.setVisibility(LinearLayout.GONE);
                 layoutTel.setVisibility(LinearLayout.GONE);
@@ -307,6 +303,8 @@ public class SecondeActivity extends HomeActivity implements AdapterView.OnItemS
                 Site c = (Site) parent.getItemAtPosition(position);
                 Toast.makeText(getApplicationContext(),"Site Selected",Toast.LENGTH_SHORT).show();
                 ville.setText(c.getVille());
+                contact.setText(c.getContact());
+                tel.setText(c.getTelephone());
                 layoutVille.setVisibility(LinearLayout.VISIBLE);
                 layoutContact.setVisibility(LinearLayout.VISIBLE);
                 layoutTel.setVisibility(LinearLayout.VISIBLE);

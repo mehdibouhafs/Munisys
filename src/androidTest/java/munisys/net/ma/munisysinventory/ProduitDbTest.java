@@ -36,17 +36,17 @@ public class ProduitDbTest {
     @Before
     public void instantiate(){
         this.context = InstrumentationRegistry.getTargetContext();
-        this.db = new Db_Invenantaire(context,2);
+        this.db = new Db_Invenantaire(context,11);
     }
 
 
 
     @Test
     public void get_isCorrect() throws Exception {
-        Produit produit =  this.db.getProduit("AY032AV");
+        Produit produit =  this.db.getProduit("740617198256");
 
-        Log.e("produit ",produit.getModele() +" id " + produit.getEquipement());
-        assertEquals(produit.getModele(), "AY032AV");
+        Log.e("produit ",produit.toString());
+        assertEquals(produit.getModele(), "740617198256");
     }
 
 
@@ -57,13 +57,15 @@ public class ProduitDbTest {
         this.db.insererProduit("CE399AE","Imprimante","HP","4 240");
         this.db.insererProduit("CR399AE","Imprimante","HP","4 240");
         this.db.insererProduit("CY399AE","Imprimante","HP","4 240");*/
+        //this.db.insererProduit("740617198256","Ecran Pc","HP","4240","195599439","1");
+        //this.db.insererProduit("7406171983","Cle Usb","Kingston","4241");
 
         ArrayList<Produit> produits =  this.db.getAllProduits();
         for (Produit e:produits
                 ) {
-            Log.e("produit ",e.getModele() +" id " + e.getEquipement());
+           // Log.e("produit ",e.getModele() +" id " + e.getEquipement());
         }
-        assertEquals(produits.size(), 5);
+        assertEquals(produits.size(), 1);
     }
     // Intervenant
 

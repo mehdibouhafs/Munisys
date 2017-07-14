@@ -41,7 +41,6 @@ public class FirstActivity extends HomeActivity {
     private Button confirmerIntervenant;
     private MultiSpinnerSearch searchMultiSpinnerUnlimited;
     private ArrayList<User> users;
-    private Db_Invenantaire db;
     private TextView intervenantPrincipale;
 
     private ImageButton newIntervenant;
@@ -58,7 +57,7 @@ public class FirstActivity extends HomeActivity {
         session = new Session(this);
 
         intervenantPrincipale = (TextView) view.findViewById(R.id.intervenantPrincipale);
-
+        intervenantPrincipale.setText(session.getNameUser());
 
 
         newIntervenant = (ImageButton) findViewById(R.id.newIntervenant);
@@ -95,7 +94,6 @@ public class FirstActivity extends HomeActivity {
         });
 
 
-        db = new Db_Invenantaire(this,1);
         List<Site> sites = db.getAllSites();
         List<Client> clients = db.getAllClients();
         for(Client c: clients){

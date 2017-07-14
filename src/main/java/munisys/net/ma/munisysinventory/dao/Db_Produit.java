@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -23,11 +24,13 @@ public class Db_Produit extends Db_SiteInventaire implements IProduitService {
     //db.execSQL("Create Table Produit(modele String Primary Key,equipement Text,marque Text,matricule Text)");
 
     @Override
-    public void insererProduit(String modele, String equipement, String marque, String matricule) {
+    public void insererProduit(String modele, String equipement, String marque, String matricule,String sn,String nInventaire) {
         SQLiteDatabase db=getWritableDatabase();
         ContentValues valeurs=new ContentValues();
         valeurs.put("modele",modele);
         valeurs.put("equipement",equipement);
+        valeurs.put("nInventaire",nInventaire);
+        valeurs.put("sn",sn);
         valeurs.put("marque",marque);
         valeurs.put("matricule",matricule);
         db.insert("Produit",null,valeurs);
@@ -42,11 +45,13 @@ public class Db_Produit extends Db_SiteInventaire implements IProduitService {
     }
 
     @Override
-    public void majProduit(String modele1, String modele, String equipement, String marque, String matricule) {
+    public void majProduit(String modele1, String modele, String equipement, String marque, String matricule,String sn,String nInventaire) {
         SQLiteDatabase db=getWritableDatabase();
         ContentValues valeurs=new ContentValues();
         valeurs.put("modele",modele);
         valeurs.put("equipement",equipement);
+        valeurs.put("nInventaire",nInventaire);
+        valeurs.put("sn",sn);
         valeurs.put("marque",marque);
         db.update("Produit",valeurs,"modele=?",new String[]{String.valueOf(modele1)});
         db.close();
@@ -63,6 +68,8 @@ public class Db_Produit extends Db_SiteInventaire implements IProduitService {
             e.setEquipement(cur.getString(cur.getColumnIndex("equipement")));
             e.setMarque(cur.getString(cur.getColumnIndex("marque")));
             e.setMatricule(cur.getString(cur.getColumnIndex("matricule")));
+            e.setSn(cur.getString(cur.getColumnIndex("sn")));
+            e.setnInventaire(cur.getString(cur.getColumnIndex("nInventaire")));
 
         }
         cur.close();
@@ -83,7 +90,10 @@ public class Db_Produit extends Db_SiteInventaire implements IProduitService {
                 arl.add(new Produit(cur.getString(cur.getColumnIndex("modele")),
                         cur.getString(cur.getColumnIndex("equipement")),
                         cur.getString(cur.getColumnIndex("marque")),
-                        cur.getString(cur.getColumnIndex("matricule"))));
+                        cur.getString(cur.getColumnIndex("matricule")),
+                        cur.getString(cur.getColumnIndex("sn")),
+                        cur.getString(cur.getColumnIndex("nInventaire"))
+                        ));
                 cur.moveToNext();
             }
 

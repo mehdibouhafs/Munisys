@@ -125,7 +125,6 @@ public class SignupActivity extends AppCompatActivity {
         Intent intent = getIntent();
         intent.putExtra("user",user);
         setResult(Activity.RESULT_OK,intent);
-        Toast.makeText(getApplicationContext(),"SIGNUP",Toast.LENGTH_SHORT).show();
         finish();
 
     }

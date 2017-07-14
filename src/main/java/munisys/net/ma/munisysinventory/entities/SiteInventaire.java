@@ -10,8 +10,7 @@ public class SiteInventaire extends Site {
     private String direction;
     private String burreauEtage;
     private String serviceCentre;
-    private String telephone;
-    private String contact;
+
 
 
     public SiteInventaire() {
@@ -19,23 +18,20 @@ public class SiteInventaire extends Site {
 
 
     public SiteInventaire(int clientId, String site, String ville, String direction, String burreauEtage, String serviceCentre, String telephone, String contact) {
-        super(clientId, site, ville);
+        super(clientId, site, ville,telephone,contact);
         this.direction = direction;
         this.burreauEtage = burreauEtage;
         this.serviceCentre = serviceCentre;
-        this.telephone = telephone;
-        this.contact = contact;
+
     }
 
     public SiteInventaire(int idSiteInventaire,int idSite,int clientId, String site, String ville,
                           String direction, String burreauEtage, String serviceCentre, String telephone, String contact) {
-        super(idSite, clientId, site, ville);
+        super(clientId, site, ville,telephone,contact);
         this.idSiteInventaire = idSiteInventaire;
         this.direction = direction;
         this.burreauEtage = burreauEtage;
         this.serviceCentre = serviceCentre;
-        this.telephone = telephone;
-        this.contact = contact;
     }
 
     public String getDirection() {
@@ -60,22 +56,6 @@ public class SiteInventaire extends Site {
 
     public void setServiceCentre(String serviceCentre) {
         this.serviceCentre = serviceCentre;
-    }
-
-    public String getTelephone() {
-        return telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
     }
 
     public int getIdSiteInventaire() {

@@ -41,11 +41,11 @@ public class Db_gest extends SQLiteOpenHelper {
             db.execSQL("Create Table Cliente(id Integer Primary Key AUTOINCREMENT,client Text)");
             db.execSQL("Create Table User(id Integer Primary Key AUTOINCREMENT,name Text,email Text,password Text)");
             db.execSQL("Create Table Intervenant(id Integer Primary Key AUTOINCREMENT,nomIntervenant Text)");
-            db.execSQL("Create Table Site(id Integer Primary Key AUTOINCREMENT,clientId Integer,site Text,ville Text)");
-            db.execSQL("Create Table SiteInventaire(id Integer Primary Key AUTOINCREMENT,siteId Integer,direction Text,ville Text,burreauEtage Text,serviceOrCentre Text,telephone Text,contact Text)");
+            db.execSQL("Create Table Site(id Integer Primary Key AUTOINCREMENT,clientId Integer,site Text,ville Text,telephone Text,contact Text)");
+            db.execSQL("Create Table SiteInventaire(id Integer Primary Key AUTOINCREMENT,siteId Integer,direction Text,ville Text,burreauEtage Text,serviceOrCentre Text)");
             db.execSQL("Create Table IntervenantInventaire(idInventaire Integer,idIntervenant Integer)");
-            db.execSQL("Create Table ProduitInventaire( id Integer Primary Key AUTOINCREMENT,idProduit String,idIventaire Text,nInventaire Text,SN Text,nomPoste Text,addIp Text,dhcp Integer,electriciteSepare Integer,onduleurOperationnel Integer,collaborateur Text)");
-            db.execSQL("Create Table Produit(modele String Primary Key,equipement Text,marque Text,matricule Text)");
+            db.execSQL("Create Table ProduitInventaire( id Integer Primary Key AUTOINCREMENT,idProduit Text,idIventaire Text,nomPoste Text,addIp Text,dhcp Integer,electriciteSepare Integer,onduleurOperationnel Integer,collaborateur Text)");
+            db.execSQL("Create Table Produit(modele Text Primary Key,equipement Text,marque Text,matricule Text,sn Text,nInventaire Text)");
             db.execSQL("Create Table Inventaire(id Integer Primary Key AUTOINCREMENT,clientId Integer,siteIventaireId Integer," +
                     "intervenantIventaireId Integer,dateInventaire Datetime DEFAULT CURRENT_DATE)");
 
@@ -66,7 +66,7 @@ public class Db_gest extends SQLiteOpenHelper {
         db.execSQL("Drop Table Site");
         db.execSQL("Drop Table IntervenantInventaire");
         db.execSQL("Drop Table SiteInventaire");
-       // db.execSQL("Drop Table Client1");
+        db.execSQL("Drop Table Cliente");
         db.execSQL("Drop Table ProduitInventaire");
         db.execSQL("Drop Table Produit");
         db.execSQL("Drop Table Inventaire");

@@ -57,7 +57,7 @@ public class AdaptorForProduit extends RecyclerView.Adapter<AdaptorForProduit.My
         holder.equipement.setText("Equipement : "+produit.getEquipement());
         holder.modele.setText("Modèle : " +produit.getModele());
         holder.nInventaire.setText("N° inventaire : "+produit.getnInventaire());
-        holder.sn.setText("Numero de serie : "+produit.getSN());
+        holder.sn.setText("Numero de serie : "+produit.getSn());
         holder.onduleurOperationnel.setChecked(produit.isOnduleurOperationnel());
         holder.electriciteSeparer.setChecked(produit.isElectriciteSepare());
         holder.nomPoste.setText("Nom du Poste"+produit.getNomPoste());
@@ -140,7 +140,7 @@ public class AdaptorForProduit extends RecyclerView.Adapter<AdaptorForProduit.My
 
                 for (ProduitInventaire produit : list_don) {
 
-                    if (produit.getNomPoste().toLowerCase().contains(charString) || produit.getCollaborateur().toLowerCase().contains(charString) || produit.getSN().toLowerCase().contains(charString)
+                    if (produit.getNomPoste().toLowerCase().contains(charString) || produit.getCollaborateur().toLowerCase().contains(charString) || produit.getSn().toLowerCase().contains(charString)
                             || String.valueOf(produit.getnInventaire()).toLowerCase().contains(charString)){
 
                     /*if (produit.getModele().toLowerCase().contains(charString)  || produit.getMatricule().toLowerCase().contains(charString)

@@ -44,9 +44,9 @@ public class ClientDbTest {
 
     @Test
     public void get_isCorrect() throws Exception {
-        Client client =  this.db.getClient(1);
-        Log.e("Client get  ",client.getClient() +" id " + client.getId());
-        assertEquals(client.getId(), 1);
+        int id =  this.db.getClient("GCAM");
+        Log.e("Client get  ",id +"");
+        assertEquals(id, 1);
     }
 
 
@@ -61,13 +61,13 @@ public class ClientDbTest {
         this.db.insererClient("Munisys");
         this.db.insererClient("CIH");*/
 
-        ArrayList<Client> clients =  this.db.getAllClients();
+        /*ArrayList<Client> clients =  this.db.getAllClients();
 
         for (Client e:clients
                 ) {
             Log.e("Client ",e.getClient() +" id " + e.getId());
         }
-        this.db.insererClient("GCAM");
+        this.db.insererClient("GCAM");*/
         assertEquals(this.db.insererClient("GCAM"),false);
     }
 

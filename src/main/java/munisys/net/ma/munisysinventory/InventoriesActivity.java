@@ -68,19 +68,19 @@ public class InventoriesActivity extends HomeActivity {
         ProduitInventaire p = new ProduitInventaire();
 
         p.setCollaborateur("Samir");
-        p.setSN("6CM311130DQ");
+        p.setSn("6CM311130DQ");
         p.setnInventaire("595959");
 
         ProduitInventaire p1 = new ProduitInventaire();
 
         p.setCollaborateur("Samir");
-        p.setSN("6CM311130DQ");
+        p.setSn("6CM311130DQ");
         p.setnInventaire("595959");
 
         ProduitInventaire p2 = new ProduitInventaire();
 
         p.setCollaborateur("Samir");
-        p.setSN("6CM311130DQ");
+        p.setSn("6CM311130DQ");
         p.setnInventaire("595959");
 
 

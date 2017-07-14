@@ -57,7 +57,7 @@ public class Db_Site extends Db_Client implements ISiteService {
             while(cur.isAfterLast()==false)
             {
                 arl.add(new Site(cur.getInt(cur.getColumnIndex("id")),cur.getInt(cur.getColumnIndex("clientId")),cur.getString(cur.getColumnIndex("site")),
-                        cur.getString(cur.getColumnIndex("ville"))));
+                        cur.getString(cur.getColumnIndex("ville")),cur.getString(cur.getColumnIndex("telephone")),cur.getString(cur.getColumnIndex("contact"))));
                 cur.moveToNext();
             }
         cur.close();
@@ -76,12 +76,11 @@ public class Db_Site extends Db_Client implements ISiteService {
         }
         cur.close();
         db.close();
-
         return false;
     }
 
     @Override
-    public boolean insererSite(String site, String ville, int cliendId) {
+    public boolean insererSite(String site, String ville, int cliendId,String telephone,String contact) {
 
         if(!getSiteBoolean(site,ville,cliendId)) {
             SQLiteDatabase db = getWritableDatabase();
@@ -91,6 +90,8 @@ public class Db_Site extends Db_Client implements ISiteService {
             valeurs.put("site", site);
             valeurs.put("ville", ville);
             valeurs.put("clientId", cliendId);
+            valeurs.put("telephone", telephone);
+            valeurs.put("contact", contact);
             db.insert("Site", null, valeurs);
             db.close();
             return true;
@@ -106,12 +107,14 @@ public class Db_Site extends Db_Client implements ISiteService {
     }
 
     @Override
-    public void majSite(int id, String site, String ville, int clientId) {
+    public void majSite(int id, String site, String ville, int clientId,String tel,String contact) {
         SQLiteDatabase db=getWritableDatabase();
         ContentValues valeurs=new ContentValues();
         //valeurs.put("id",id);
         valeurs.put("site",site);
         valeurs.put("ville",ville);
+        valeurs.put("telephone",tel);
+        valeurs.put("contact",contact);
         valeurs.put("clientId",clientId);
 
         db.update("Site",valeurs,"id=?",new String[]{String.valueOf(id)});

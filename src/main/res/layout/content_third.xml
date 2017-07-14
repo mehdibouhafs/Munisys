@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="20dp">
+    android:layout_marginTop="5dp">
 
     <LinearLayout
         android:id="@+id/viewA"
@@ -13,7 +13,6 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
-        android:layout_marginTop="8dp"
         android:background="@color/accent_"
         android:orientation="vertical"
         android:paddingLeft="5dp"
@@ -27,161 +26,155 @@
             android:background="@color/accent_"
             android:orientation="vertical">
 
+
             <TextView
-                android:id="@+id/nbProduits"
+                android:id="@+id/note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="Nombre de produits ajouté : 0"
+                android:text="Please scan the modele"
                 android:textAlignment="center"
-                android:textColor="@color/White" />
+                android:textColor="@android:color/holo_red_light"
+                android:textStyle="bold" />
 
             <LinearLayout
+                android:id="@+id/layout_group"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_modele"
+                <LinearLayout
+                    android:id="@+id/layoutEquipement"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/modele"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/textView14"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="serif"
-                        android:hint="Modèle"
-                        android:paddingLeft="15dp"
-                        android:textAlignment="center"
+                        android:text="Modèle: "
+                        android:textColor="@android:color/background_dark"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/modele"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="Equipement: "
+                        android:textAlignment="viewStart"
+                        android:textColor="@android:color/background_dark"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/equipement"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="3dp"
                         android:textColor="@color/black"
-                        android:textSize="18sp"
-                        android:visibility="visible" />
-                </android.support.design.widget.TextInputLayout>
+                        android:textSize="13sp" />
 
-                <ImageButton
-                    android:id="@+id/addModele"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="10dp"
-                    android:background="@drawable/add"
-                    android:backgroundTint="@android:color/holo_green_light" />
-            </LinearLayout>
+                </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/layoutEquipement"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Equipement :"
-                    android:textAlignment="viewStart"
-                    android:textColor="@android:color/background_dark"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/equipement"
+                <LinearLayout
+                    android:id="@+id/layoutMaMa"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="3dp"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Marque: "
+                        android:textColor="@android:color/background_dark"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/marque"
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:paddingLeft="3dp"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="Matricule: "
+                        android:textColor="@android:color/background_dark"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/matricule"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="3dp"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutSn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/editT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="S.N: "
+                        android:textColor="@android:color/background_dark"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/sn"
+                        android:layout_width="107dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:paddingLeft="3dp"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="N°Invent: "
+                        android:textColor="@android:color/background_dark"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/nInventaire"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="3dp"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/layoutMaMa"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Marque :"
-                    android:textColor="@android:color/background_dark"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/marque"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:paddingLeft="3dp"
-                    android:textAlignment="viewStart"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Matricule :"
-                    android:textColor="@android:color/background_dark"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/matricule"
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="3dp"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/layoutSn"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/editT"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="S.N"
-                    android:textColor="@android:color/background_dark"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/sn"
-                    android:layout_width="185dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:paddingLeft="3dp"
-                    android:textAlignment="viewStart"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="N°Invent :"
-                    android:textColor="@android:color/background_dark"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/nInventaire"
-                    android:layout_width="70dp"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="3dp"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_layout_collaboratteur"
@@ -199,7 +192,7 @@
                     android:text="ELBOUSSOUBI KHADIJA"
                     android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="14sp"
                     android:visibility="visible" />
 
             </android.support.design.widget.TextInputLayout>
@@ -212,20 +205,20 @@
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/input_layout_nomPoste"
-                    android:layout_width="130dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp">
 
                     <EditText
                         android:id="@+id/nomPoste"
-                        android:layout_width="130dp"
+                        android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
                         android:hint="Nom du poste"
                         android:text="POSTE 1"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:visibility="visible" />
 
 
@@ -233,19 +226,20 @@
 
                 <android.support.design.widget.TextInputLayout
                     android:id="@+id/input_layout_addIp"
-                    android:layout_width="130dp"
+                    android:layout_width="100dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:layout_marginTop="10dp">
 
                     <EditText
                         android:id="@+id/addip"
-                        android:layout_width="130dp"
+                        android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
                         android:hint="Address ip"
                         android:text="192.168.1.5"
                         android:textColor="@color/black"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:visibility="visible" />
 
                 </android.support.design.widget.TextInputLayout>
@@ -254,9 +248,10 @@
                     android:id="@+id/dhcp"
                     android:layout_width="90dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="20dp"
                     android:text="dhcp"
-                    android:textSize="16sp"
+                    android:textSize="12sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -271,9 +266,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="fill_horizontal"
+                    android:layout_marginLeft="20dp"
                     android:text="Electricite séparer"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="10sp"
                     android:textStyle="bold" />
 
 
@@ -282,10 +278,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="fill_horizontal"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="20dp"
                     android:text="Onduleur Opérationnel"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="12sp"
                     android:textStyle="bold" />
 
 
@@ -293,14 +289,14 @@
 
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/ajouterMateriel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_marginLeft="150dp"
                 android:clickable="true"
                 android:src="@drawable/add2"
-                app:backgroundTint="@color/White"
-                app:elevation="8dp"
-                app:layout_anchorGravity="bottom|left" />
+                android:tint="@color/ripple"
+                app:elevation="1dp"
+                app:layout_anchorGravity="bottom" />
 
 
         </LinearLayout>
@@ -314,10 +310,7 @@
             android:nestedScrollingEnabled="false"
             android:paddingBottom="10dp"
             android:scrollbars="vertical" />
-        </LinearLayout>
-
-
-
+    </LinearLayout>
 
 
 </android.support.v4.widget.NestedScrollView>

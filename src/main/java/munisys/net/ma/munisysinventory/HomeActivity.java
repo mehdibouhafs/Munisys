@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import munisys.net.ma.munisysinventory.adapters.MainMenuAdapter;
+import munisys.net.ma.munisysinventory.dao.Db_Invenantaire;
 import munisys.net.ma.munisysinventory.entities.Session;
 
 public class HomeActivity extends AppCompatActivity {
@@ -32,6 +33,7 @@ public class HomeActivity extends AppCompatActivity {
     protected FrameLayout frameLayout;
     protected int activityId;
     protected Session session;
+    protected Db_Invenantaire db = new Db_Invenantaire(this,11);
 
     static final String[] titles = new String[] {
             "New Inventaire","All Inventaire",

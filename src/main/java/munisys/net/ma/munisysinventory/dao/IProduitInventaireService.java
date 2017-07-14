@@ -13,14 +13,12 @@ import munisys.net.ma.munisysinventory.entities.ProduitInventaire;
  */
 
 public interface IProduitInventaireService {
-    public void insererProduitInventaire(String idProduit,String nInventaire,
-                               String sn,String nomPoste,String addIp,Boolean dhcp,Boolean electriciteSepare,
+    public void insererProduitInventaire(String idProduit,String nomPoste,String addIp,Boolean dhcp,Boolean electriciteSepare,
                                Boolean onduleurOperationnel,String collaborateur);
 
 
     public void deleteProduitInventaire(int id);
-    public void majProduitInventaire(int id,String idProduit, String nInventaire,
-                           String sn,String nomPoste,String addIp,Boolean dhcp,Boolean electriciteSepare,
+    public void majProduitInventaire(int id,String idProduit,String nomPoste,String addIp,Boolean dhcp,Boolean electriciteSepare,
                            Boolean onduleurOperationnel,String collaborateur);
     public ProduitInventaire getProduitInventaire(int id);
     public ArrayList<ProduitInventaire> getAllProduitsInventaire(int idInventaire);
