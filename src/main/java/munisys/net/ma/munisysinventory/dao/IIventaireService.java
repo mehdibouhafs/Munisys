@@ -13,11 +13,17 @@ import munisys.net.ma.munisysinventory.entities.Produit;
  */
 
 public interface IIventaireService {
-    public void insererInventaire(int idClient, int idIntervenant,int siteIventaireId, Date dateInventaire);
+    /*Create Table Inventaire(id Integer Primary Key AUTOINCREMENT,clientId Integer,siteIventaireId Integer," +
+                    "intervenantIventaireId Integer,dateInventaire Datetime DEFAULT CURRENT_DATE,electriciteSepare Integer,onduleurOperationnel Integer,
+                    majAntivirus Integer,depoussierage Integer,empEquipement Integer,etatCablage Integer*/
+
+    public Long insererInventaire(int idClient, Date dateInventaire,int electriciteSepare,int onduleurOperationnel,
+                                  int majAntivirus,int depoussierage,int empEquipement,int etatCablage,String autreTravauxRealiser);
 
 
     public void deleteInventaire(int id);
     //public void majInventaire(int id,int idClient, int idIntervenant,int siteIventaireId, Date dateInventaire);
     public Inventaire getInventaire(int id);
     public ArrayList<Inventaire> getAllInventaires();
+    public void dropTableInventaire();
 }

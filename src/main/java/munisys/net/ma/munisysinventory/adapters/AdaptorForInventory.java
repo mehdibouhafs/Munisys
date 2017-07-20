@@ -1,15 +1,21 @@
 package munisys.net.ma.munisysinventory.adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,11 +32,13 @@ public class AdaptorForInventory extends RecyclerView.Adapter<AdaptorForInventor
 
     ArrayList<Inventaire> list_don;
     ArrayList<Inventaire>  list_don_filtred;
+    Context ctx;
 
 
-    public AdaptorForInventory(ArrayList<Inventaire> list_don) {
+    public AdaptorForInventory(ArrayList<Inventaire> list_don,Context ctx) {
 
         this.list_don = list_don;
+        this.ctx = ctx;
         this.list_don_filtred = list_don;
     }
 
@@ -49,13 +57,14 @@ public class AdaptorForInventory extends RecyclerView.Adapter<AdaptorForInventor
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Inventaire inventaire = list_don_filtred.get(position);
         holder.client.setText("Client : "+inventaire.getClient().getClient());
-        holder.site.setText("Site : "+inventaire.getSiteInventaire().getSite());
-        holder.serviceCentre.setText("Service/Centre : " +inventaire.getSiteInventaire().getServiceCentre());
-        holder.ville.setText("Ville : "+inventaire.getSiteInventaire().getVille());
-        holder.burreauEtage.setText("Burreau/Etage : "+inventaire.getSiteInventaire().getBurreauEtage());
+        holder.lastUpdate.setText("Last update :"+inventaire.getDateInventaire());
+        try {
+            fileToImageView(inventaire.getClient().getLogo(),holder.logo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-
-        holder.date.setText("Date: "+dateFormat.format(inventaire.getDateInventaire()));
+        holder.lastUpdate.setText("Date: "+dateFormat.format(inventaire.getDateInventaire()));
     }
 
     @Override
@@ -102,25 +111,29 @@ public class AdaptorForInventory extends RecyclerView.Adapter<AdaptorForInventor
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView imageClient;
+
         TextView client;
-        TextView site;
-        TextView serviceCentre ;
-        TextView ville ;
-        TextView burreauEtage;
-        TextView date;
+        TextView lastUpdate;
+        ImageView logo;
+
 
 
         public MyViewHolder(View v) {
             super(v); // done this way instead of view tagging
-            this.imageClient = (ImageView) v.findViewById(R.id.imageClient1);
-             this.client = (TextView) v.findViewById(R.id.client1);
-            this.site = (TextView) v.findViewById(R.id.site1);
-            this.serviceCentre = (TextView) v.findViewById(R.id.serviceCentre1);
-            this.ville = (TextView) v.findViewById(R.id.ville1);
-            this.burreauEtage = (TextView) v.findViewById(R.id.burreauEtage1);
-            this.date = (TextView) v.findViewById(R.id.date1);
+             this.client = (TextView) v.findViewById(R.id.client);
+             this.lastUpdate = (TextView) v.findViewById(R.id.lastupdate);
+             this.logo = (ImageView) v.findViewById(R.id.logo);
 
         }
+    }
+
+    public void fileToImageView(String filePath,ImageView logo) throws IOException {
+
+        InputStream inputStream = ctx.getContentResolver().openInputStream(Uri.parse(filePath));
+        Bitmap bmp = BitmapFactory.decodeStream(inputStream);
+        if( inputStream != null ) inputStream.close();
+        logo.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        logo.setImageBitmap(bmp);
+
     }
 }

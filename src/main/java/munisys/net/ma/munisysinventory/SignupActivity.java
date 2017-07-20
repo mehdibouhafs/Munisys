@@ -46,7 +46,7 @@ public class SignupActivity extends AppCompatActivity {
         _loginLink = (TextView) findViewById(R.id.link_login);
         user = new User();
 
-        db = new Db_Invenantaire(this,11);
+        db = new Db_Invenantaire(this,16);
 
 
         progressDialog = new ProgressDialog(SignupActivity.this,
@@ -95,6 +95,7 @@ public class SignupActivity extends AppCompatActivity {
         //String reEnterPassword = _reEnterPasswordText.getText().toString();
 
             db.insererUser(name, email, password);
+            db.insererIntervenant(name);
         user.setEmail(email);
         user.setName(name);
             Log.i("User Inserer ",db.getUser(email,password).toString());

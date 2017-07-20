@@ -13,18 +13,17 @@ public class Produit implements Serializable {
     private String marque;
     private String matricule;
     private String nInventaire;
-    private String sn;
+
 
 
     public Produit() {
     }
 
-    public Produit(String modele, String equipement, String marque, String matricule,String sn,String nInventaire) {
+    public Produit(String modele, String equipement, String marque, String matricule,String nInventaire) {
         this.modele = modele;
         this.equipement = equipement;
         this.marque = marque;
         this.matricule = matricule;
-        this.sn = sn;
         this.nInventaire = nInventaire;
     }
 
@@ -68,13 +67,6 @@ public class Produit implements Serializable {
         this.nInventaire = nInventaire;
     }
 
-    public String getSn() {
-        return sn;
-    }
-
-    public void setSn(String sn) {
-        this.sn = sn;
-    }
 
     @Override
     public String toString() {
@@ -84,7 +76,6 @@ public class Produit implements Serializable {
                 ", marque='" + marque + '\'' +
                 ", matricule='" + matricule + '\'' +
                 ", nInventaire='" + nInventaire + '\'' +
-                ", sn='" + sn + '\'' +
                 '}';
     }
 }

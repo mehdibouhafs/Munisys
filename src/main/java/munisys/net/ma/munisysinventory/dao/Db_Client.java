@@ -25,7 +25,7 @@ public class Db_Client extends Db_IntervenantInventaire implements IClientServic
     //db.execSQL("Create Table Client(id Integer Primary Key AUTOINCREMENT,client Text)");
 
 
-    public boolean insererClient(String client)
+    public boolean insererClient(String client,String path_logo)
     {
         if(!getClientBoolean(client)) {
             SQLiteDatabase db = getWritableDatabase();
@@ -33,7 +33,8 @@ public class Db_Client extends Db_IntervenantInventaire implements IClientServic
 
             //valeurs.put("id",id);
             valeurs.put("client", client);
-            db.insert("Cliente", null, valeurs);
+            valeurs.put("logo",path_logo);
+            db.insert("Client", null, valeurs);
             db.close();
             return true;
         }
@@ -46,18 +47,19 @@ public class Db_Client extends Db_IntervenantInventaire implements IClientServic
     public void deleteClient(int id )
     {
         SQLiteDatabase db=getWritableDatabase();
-        db.delete("Cliente","id=?",new String[]{String.valueOf(id)});
+        db.delete("Client","id=?",new String[]{String.valueOf(id)});
         db.close();
 
     }
 
     @Override
-    public void majClient(int id, String client) {
+    public void majClient(int id, String client,String path_logo) {
         SQLiteDatabase db=getWritableDatabase();
         ContentValues valeurs=new ContentValues();
         valeurs.put("id",id);
         valeurs.put("client",client);
-        db.update("Cliente",valeurs,"id=?",new String[]{String.valueOf(id)});
+        valeurs.put("logo",path_logo);
+        db.update("Client",valeurs,"id=?",new String[]{String.valueOf(id)});
         db.close();
     }
 
@@ -66,11 +68,12 @@ public class Db_Client extends Db_IntervenantInventaire implements IClientServic
 
         SQLiteDatabase db=getReadableDatabase();
         Client e=new Client();
-        Cursor cur=db.rawQuery("select * from Cliente where id=?",new String[]{String.valueOf(id)} );
+        Cursor cur=db.rawQuery("select * from Client where id=?",new String[]{String.valueOf(id)} );
 
         if(cur.moveToFirst())
         {   e.setId(cur.getInt(cur.getColumnIndex("id")));
             e.setClient(cur.getString(cur.getColumnIndex("client")));
+            e.setLogo(cur.getString(cur.getColumnIndex("logo")));
 
         }
         cur.close();
@@ -82,11 +85,12 @@ public class Db_Client extends Db_IntervenantInventaire implements IClientServic
     public ArrayList<Client> getAllClients() {
         SQLiteDatabase db=getReadableDatabase();
         ArrayList<Client> arl=new ArrayList<Client>();
-        Cursor cur=db.rawQuery("select * from Cliente",null);
+        Cursor cur=db.rawQuery("select * from Client",null);
         if(cur.moveToFirst())
             while(cur.isAfterLast()==false)
             {
-                arl.add(new Client(cur.getInt(cur.getColumnIndex("id")),cur.getString(cur.getColumnIndex("client"))));
+                arl.add(new Client(cur.getInt(cur.getColumnIndex("id")),cur.getString(cur.getColumnIndex("client")),
+                        cur.getString(cur.getColumnIndex("logo"))));
                 cur.moveToNext();
             }
         cur.close();
@@ -96,13 +100,14 @@ public class Db_Client extends Db_IntervenantInventaire implements IClientServic
     }
 
     @Override
-    public int insererClient2(String client) {
+    public int insererClient2(String client,String path_logo) {
         SQLiteDatabase db=getWritableDatabase();
         ContentValues valeurs=new ContentValues();
 
         //valeurs.put("id",id);
         valeurs.put("client",client);
-        Long id =db.insert("Cliente",null,valeurs);
+        valeurs.put("logo",path_logo);
+        Long id =db.insert("Client",null,valeurs);
         db.close();
         return (int)(long)id;
     }
@@ -112,7 +117,7 @@ public class Db_Client extends Db_IntervenantInventaire implements IClientServic
 
         SQLiteDatabase db=getReadableDatabase();
         Client e=new Client();
-        Cursor cur=db.rawQuery("select * from Cliente where client=?",new String[]{String.valueOf(client)} );
+        Cursor cur=db.rawQuery("select * from Client where client=?",new String[]{String.valueOf(client)} );
 
         if(cur.moveToFirst())
         {
@@ -131,7 +136,7 @@ public class Db_Client extends Db_IntervenantInventaire implements IClientServic
     @Override
     public Boolean getClientBoolean(String client) {
         SQLiteDatabase db=getReadableDatabase();
-        String selectQuery = "select * from Cliente where client = '"+client +"'";
+        String selectQuery = "select * from Client where client = '"+client +"'";
         Cursor cur=db.rawQuery(selectQuery,null);
         cur.moveToFirst();
         if(cur.getCount() > 0){
@@ -146,7 +151,7 @@ public class Db_Client extends Db_IntervenantInventaire implements IClientServic
     @Override
     public void dropTableClient() {
         SQLiteDatabase db=getWritableDatabase();
-        db.execSQL("Drop Table Cliente");
+        db.execSQL("delete * from Client");
         db.close();
     }
 }

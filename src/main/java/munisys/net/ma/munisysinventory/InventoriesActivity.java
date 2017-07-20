@@ -33,71 +33,16 @@ public class InventoriesActivity extends HomeActivity {
         super.onCreate(savedInstanceState);
         View view = getLayoutInflater().inflate(R.layout.content_inventories, frameLayout);
         activityId = R.layout.content_inventories;
+
         recyclerView = (RecyclerView) view.findViewById(R.id.my_recycler_view2);
-        inventaires = new ArrayList<>();
-        mAdaptorForInventory = new AdaptorForInventory(inventaires);
+        inventaires = db.getAllInventaires();
+        mAdaptorForInventory = new AdaptorForInventory(inventaires,this);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdaptorForInventory);
         //Toast.makeText(this,"Invotriries Activity",Toast.LENGTH_SHORT).show();
 
-        prepareMovieData();
-
-    }
-
-    private void prepareMovieData() {
-
-        Inventaire inventaire = new Inventaire();
-        Inventaire inventaire2 = new Inventaire();
-        Inventaire inventaire3 = new Inventaire();
-        ArrayList<ProduitInventaire> produits = new ArrayList<>();
-        Client c = new Client();
-
-        c.setClient("GCAM");
-
-
-
-        Client c1 = new Client();
-
-        c1.setClient("Munisys");
-
-
-
-
-        ProduitInventaire p = new ProduitInventaire();
-
-        p.setCollaborateur("Samir");
-        p.setSn("6CM311130DQ");
-        p.setnInventaire("595959");
-
-        ProduitInventaire p1 = new ProduitInventaire();
-
-        p.setCollaborateur("Samir");
-        p.setSn("6CM311130DQ");
-        p.setnInventaire("595959");
-
-        ProduitInventaire p2 = new ProduitInventaire();
-
-        p.setCollaborateur("Samir");
-        p.setSn("6CM311130DQ");
-        p.setnInventaire("595959");
-
-
-
-        produits.add(p1);produits.add(p);produits.add(p2);
-
-        inventaire.setProduits(produits);
-        inventaire2.setProduits(produits);
-        inventaire3.setProduits(produits);
-        inventaires.add(inventaire);
-        inventaires.add(inventaire2);
-        inventaires.add(inventaire3);
-
-
-
-
-        mAdaptorForInventory.notifyDataSetChanged();
     }
 
 

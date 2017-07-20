@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -26,7 +27,7 @@ public class Db_SiteInventaire extends Db_Site implements ISiteInventaireService
     // burreauEtage Text,serviceOrCentre Text,telephone Text,contact Text");
 
     @Override
-    public void insererSiteInventaire(SiteInventaire siteInventaire) {
+    public Long insererSiteInventaire(SiteInventaire siteInventaire) {
         SQLiteDatabase db=getWritableDatabase();
         ContentValues valeurs=new ContentValues();
 
@@ -34,14 +35,15 @@ public class Db_SiteInventaire extends Db_Site implements ISiteInventaireService
         valeurs.put("siteId",siteInventaire.getIdSite());
         valeurs.put("direction",siteInventaire.getDirection());
         valeurs.put("ville",siteInventaire.getVille());
-
+        valeurs.put("idInventaire",siteInventaire.getIdIventaire());
         valeurs.put("burreauEtage",siteInventaire.getBurreauEtage());
         valeurs.put("serviceOrCentre",siteInventaire.getServiceCentre());
         valeurs.put("telephone",siteInventaire.getTelephone());
         valeurs.put("contact",siteInventaire.getContact());
 
-        db.insert("SiteInventaire",null,valeurs);
+        Long id =db.insert("SiteInventaire",null,valeurs);
         db.close();
+        return  id;
     }
 
     @Override
@@ -51,28 +53,41 @@ public class Db_SiteInventaire extends Db_Site implements ISiteInventaireService
         db.close();
     }
 
+    @Override
+    public void deleteSiteInventairebyIdInventaire(int idIventaire) {
+        SQLiteDatabase db=getWritableDatabase();
+        db.delete("SiteInventaire","idInventaire=?",new String[]{String.valueOf(idIventaire)});
+        db.close();
+    }
+
 
     @Override
-    public SiteInventaire getSiteInventaire(int id) {
+    public ArrayList<SiteInventaire> getSiteInventaire(int id) {
         SQLiteDatabase db=getReadableDatabase();
-        SiteInventaire e=new SiteInventaire();
-        Cursor cur=db.rawQuery("select * from SiteInventaire where id=?",new String[]{String.valueOf(id)} );
-
+        ArrayList<SiteInventaire> siteInventaires=new ArrayList<>();
+        Cursor cur=db.rawQuery("select * from SiteInventaire where idInventaire=?",new String[]{String.valueOf(id)} );
+        SiteInventaire e = null;
         if(cur.moveToFirst())
-        {   e.setIdSiteInventaire(cur.getInt(cur.getColumnIndex("idInventaire")));
-            Site site = getSite(cur.getInt(cur.getColumnIndex("siteId")));
-            e.setSite(site.getSite());
-            e.setVille(site.getVille());
-            e.setClientId(site.getClientId());
-            e.setDirection(cur.getString(cur.getColumnIndex("direction")));
-            e.setBurreauEtage(cur.getString(cur.getColumnIndex("burreauEtage")));
-            e.setServiceCentre(cur.getString(cur.getColumnIndex("serviceCentre")));
-            e.setTelephone(cur.getString(cur.getColumnIndex("telephone")));
-            e.setContact(cur.getString(cur.getColumnIndex("contact")));
-        }
+            while(cur.isAfterLast()==false) {
+                e = new SiteInventaire();
+                e.setIdSiteInventaire(cur.getInt(cur.getColumnIndex("id")));
+                Site site = getSite(cur.getInt(cur.getColumnIndex("siteId")));
+                e.setSite(site.getSite());
+                e.setVille(site.getVille());
+                e.setClientId(site.getClientId());
+                e.setIdIventaire(cur.getInt(cur.getColumnIndex("idInventaire")));
+                e.setDirection(cur.getString(cur.getColumnIndex("direction")));
+                e.setBurreauEtage(cur.getString(cur.getColumnIndex("burreauEtage")));
+                e.setServiceCentre(cur.getString(cur.getColumnIndex("serviceOrCentre")));
+                e.setTelephone(cur.getString(cur.getColumnIndex("telephone")));
+                e.setContact(cur.getString(cur.getColumnIndex("contact")));
+                siteInventaires.add(e);
+                cur.moveToNext();
+            }
+
         cur.close();
         db.close();
-        return e;
+        return siteInventaires;
     }
 
     @Override
@@ -86,11 +101,11 @@ public class Db_SiteInventaire extends Db_Site implements ISiteInventaireService
             while(cur.isAfterLast()==false)
             {
                 site = getSite(cur.getInt(cur.getColumnIndex("siteId")));
-
-                siteInventaire  = new SiteInventaire(cur.getInt(cur.getColumnIndex("idInventaire")),cur.getInt(cur.getColumnIndex("siteId")),
-                         site.getClientId(),site.getSite(),site.getVille(),
+                Log.e("siteSearch",site.toString());
+                siteInventaire  = new SiteInventaire(cur.getInt(cur.getColumnIndex("id")),cur.getInt(cur.getColumnIndex("siteId")),
+                         site.getClientId(),site.getSite(),site.getVille(),cur.getInt(cur.getColumnIndex("idInventaire")),
                          cur.getString(cur.getColumnIndex("direction")),cur.getString(cur.getColumnIndex("burreauEtage")),
-                         cur.getString(cur.getColumnIndex("serviceCentre")),cur.getString(cur.getColumnIndex("telephone")),
+                         cur.getString(cur.getColumnIndex("serviceOrCentre")),cur.getString(cur.getColumnIndex("telephone")),
                          cur.getString(cur.getColumnIndex("contact")));
 
 
@@ -100,5 +115,12 @@ public class Db_SiteInventaire extends Db_Site implements ISiteInventaireService
         cur.close();
         db.close();
         return arl;
+    }
+
+    @Override
+    public void dropTableSiteInventaire() {
+        SQLiteDatabase db=getWritableDatabase();
+        db.execSQL("Delete from SiteInventaire");
+        db.close();
     }
 }

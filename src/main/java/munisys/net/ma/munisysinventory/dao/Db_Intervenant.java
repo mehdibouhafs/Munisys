@@ -5,7 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.androidbuts.multispinnerfilter.KeyPairBoolData;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import munisys.net.ma.munisysinventory.entities.Client;
 import munisys.net.ma.munisysinventory.entities.Intervenant;
@@ -70,11 +73,13 @@ public class Db_Intervenant extends Db_User implements IIntervenantService {
 
     {
         SQLiteDatabase db=getReadableDatabase();
-        Intervenant e=new Intervenant();
+        Intervenant e=null;
         Cursor cur=db.rawQuery("select * from Intervenant where id=?",new String[]{String.valueOf(Id)} );
 
         if(cur.moveToFirst())
-        {   e.setId(cur.getInt(cur.getColumnIndex("id")));
+        {
+            e = new Intervenant();
+            e.setId(cur.getInt(cur.getColumnIndex("id")));
             e.setNomIntervenant(cur.getString(cur.getColumnIndex("nomIntervenant")));
 
 
@@ -104,6 +109,33 @@ public class Db_Intervenant extends Db_User implements IIntervenantService {
     }
 
     @Override
+    public Intervenant getIntervenantByName(String nomIntervenant) {
+        SQLiteDatabase db=getReadableDatabase();
+        Intervenant e = null;
+        Cursor cur=db.rawQuery("select * from Intervenant where nomIntervenant=?",new String[]{String.valueOf(nomIntervenant)} );
+
+        if(cur.moveToFirst())
+        {
+            e = new Intervenant();
+            e.setId(cur.getInt(cur.getColumnIndex("id")));
+            e.setNomIntervenant(cur.getString(cur.getColumnIndex("nomIntervenant")));
+
+
+        }
+        cur.close();
+        db.close();
+
+        return e;
+    }
+
+    @Override
+    public void dropTableIntervenant() {
+        SQLiteDatabase db=getWritableDatabase();
+        db.execSQL("Delete from Site");
+        db.close();
+    }
+
+    @Override
     public Boolean getIntervenantBoolean(String nomIntervenant) {
         SQLiteDatabase db=getReadableDatabase();
         String selectQuery = "select * from Intervenant where nomIntervenant = '"+nomIntervenant +"'";
@@ -116,6 +148,31 @@ public class Db_Intervenant extends Db_User implements IIntervenantService {
         db.close();
 
         return false;
+    }
+
+    @Override
+    public List<KeyPairBoolData> getIntervenants(String intervenant) {
+        SQLiteDatabase db=getReadableDatabase();
+        ArrayList<KeyPairBoolData> arl=new ArrayList<KeyPairBoolData>();
+        Cursor cur=db.rawQuery("select * from Intervenant",null);
+        KeyPairBoolData h;
+        int i=0;
+        if(cur.moveToFirst())
+            while(cur.isAfterLast()==false)
+            {
+                if(!(cur.getString(cur.getColumnIndex("nomIntervenant")).equals(intervenant))) {
+                    i++;
+                    h = new KeyPairBoolData();
+                    h.setId(cur.getInt(cur.getColumnIndex("id")));
+                    h.setSelected(false);
+                    h.setName(cur.getString(cur.getColumnIndex("nomIntervenant")));
+                    arl.add(h);
+                }
+                cur.moveToNext();
+            }
+        cur.close();
+        db.close();
+        return arl;
     }
 
 

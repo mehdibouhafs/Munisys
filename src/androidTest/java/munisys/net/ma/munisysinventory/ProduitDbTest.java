@@ -36,7 +36,7 @@ public class ProduitDbTest {
     @Before
     public void instantiate(){
         this.context = InstrumentationRegistry.getTargetContext();
-        this.db = new Db_Invenantaire(context,11);
+        this.db = new Db_Invenantaire(context,16);
     }
 
 
@@ -58,12 +58,14 @@ public class ProduitDbTest {
         this.db.insererProduit("CR399AE","Imprimante","HP","4 240");
         this.db.insererProduit("CY399AE","Imprimante","HP","4 240");*/
         //this.db.insererProduit("740617198256","Ecran Pc","HP","4240","195599439","1");
-        //this.db.insererProduit("7406171983","Cle Usb","Kingston","4241");
+
+        //this.db.insererProduit("6111035000027","Ecran Pc","HP","4240","1955994");
+        this.db.insererProduit("740617198256","Cle Usb","Kingston","4241","919199");
 
         ArrayList<Produit> produits =  this.db.getAllProduits();
         for (Produit e:produits
                 ) {
-           // Log.e("produit ",e.getModele() +" id " + e.getEquipement());
+            Log.e("produit ",e.getModele() +" id " + e.getEquipement());
         }
         assertEquals(produits.size(), 1);
     }

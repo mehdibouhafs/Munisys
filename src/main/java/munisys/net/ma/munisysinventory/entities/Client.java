@@ -10,13 +10,23 @@ public class Client implements Serializable {
 
     private int id;
     private String client;
+    private String logo;
 
     public Client() {
     }
 
-    public Client(int id, String client) {
+    public Client(int id, String client,String logo) {
         this.id = id;
         this.client = client;
+        this.logo = logo;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 
     public int getId() {

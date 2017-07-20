@@ -35,7 +35,7 @@ public class SiteDbTest {
     @Before
     public void instantiate(){
         this.context = InstrumentationRegistry.getTargetContext();
-        this.db = new Db_Invenantaire(context,8);
+        this.db = new Db_Invenantaire(context,16);
     }
 
 
@@ -56,9 +56,9 @@ public class SiteDbTest {
 
     @Test
     public void insert_isCorrect() throws Exception {
-        /*this.db.insererSite("ABOU FARES","ERRACHIDIA",1);
+        this.db.insererSite("ABOU FARES","ERRACHIDIA",1);
         this.db.insererSite("SIDI MOUMEN","CASABLANCA",2);
-        this.db.insererSite("BENSOUDA","FES",2);*/
+        this.db.insererSite("BENSOUDA","FES",2);
 
 
        /* ArrayList<Site> sites =  this.db.getAllSites();

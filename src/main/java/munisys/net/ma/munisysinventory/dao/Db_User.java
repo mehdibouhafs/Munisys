@@ -17,17 +17,18 @@ import munisys.net.ma.munisysinventory.entities.User;
 public class Db_User extends Db_gest implements IUserService{
 
     //db.execSQL("Create Table User(id Integer Primary Key AUTOINCREMENT,name Text,email Text,password Text)");
-
     public Db_User(Context context, int version)
     {
+
         super(context, version);
+
     }
 
 
     @Override
     public boolean insererUser(String name, String email, String password) {
 
-        if(!getUserBoolean(email)) {
+        if(!getUserBooleanMailAndName(email,name)) {
             SQLiteDatabase db = getWritableDatabase();
             ContentValues valeurs = new ContentValues();
 
@@ -100,10 +101,10 @@ public class Db_User extends Db_gest implements IUserService{
     }
 
     @Override
-    public Boolean getUserBoolean(String email) {
+    public Boolean getUserBooleanMailAndName(String email,String name) {
         SQLiteDatabase db=getReadableDatabase();
         User e=new User();
-        String selectQuery = "select * from User where email = '"+email +"'";
+        String selectQuery = "select * from User where email = '"+email +"' or name ='"+name+"'";
         Cursor cur=db.rawQuery(selectQuery,null);
 
         cur.moveToFirst();
@@ -151,6 +152,12 @@ public class Db_User extends Db_gest implements IUserService{
         return arl;
     }
 
+    @Override
+    public void dropTableUsers() {
+        SQLiteDatabase db=getWritableDatabase();
+        db.execSQL("Delete from User");
+        db.close();
+    }
 
 
 }

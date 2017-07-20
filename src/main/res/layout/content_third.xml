@@ -17,12 +17,16 @@
         android:orientation="vertical"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:paddingTop="5dp">
 
         <LinearLayout
             android:id="@+id/layout_form"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
             android:background="@color/accent_"
             android:orientation="vertical">
 
@@ -30,54 +34,283 @@
             <TextView
                 android:id="@+id/note"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Please scan the modele"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/red"
+                android:padding="5dp"
+                android:text="Please scan modele"
                 android:textAlignment="center"
-                android:textColor="@android:color/holo_red_light"
+                android:textColor="@android:color/background_light"
+                android:textSize="19sp"
                 android:textStyle="bold" />
 
-            <LinearLayout
-                android:id="@+id/layout_group"
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_margin="5dp">
 
                 <LinearLayout
-                    android:id="@+id/layoutEquipement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/logo"
+                        android:layout_width="match_parent"
+                        android:layout_height="90dp"
+                        android:layout_marginTop="10dp"
+
+                        android:scaleType="centerInside"
+                        app:srcCompat="@drawable/credi" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textView16"
+                            android:layout_width="110dp"
+                            android:layout_height="match_parent"
+                            android:padding="5dp"
+                            android:text="Client :"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorAccent"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/clientName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="CGAM"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="2dp"
+                            android:padding="5dp"
+                            android:text="Nombre Produits:"
+                            android:textAlignment="center"
+                            android:textColor="@color/colorAccent"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/nbProduits"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="5dp"
+                            android:text="0"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <LinearLayout
+                android:id="@+id/layoutEquipement1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView21"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="Modèle: "
+                    android:textAlignment="viewStart"
+                    android:textColor="@android:color/background_dark"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/modele"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Veuillez scanner le modele"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:textAlignment="viewStart"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_groupEdit"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView15"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="12dp"
+                        android:text="Equipement"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                        android:id="@+id/equipement1"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_horizontal"
+                        app:hintText="Selectionner l'équipement" />
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:padding="12dp"
+                        android:text="Marque"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                        android:id="@+id/marque1"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:paddingLeft="10dp"
+                        app:hintText="Selectionnez la marque" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutSn2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="15dp"
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textView14"
+                        android:id="@+id/editT1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Modèle: "
+                        android:padding="12dp"
+                        android:text="Matricule: "
                         android:textColor="@android:color/background_dark"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/modele"
-                        android:layout_width="90dp"
+                    <EditText
+                        android:id="@+id/matricule1"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:padding="12dp"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
                         android:textSize="13sp" />
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutSn1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
                     <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/textView111"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:padding="12dp"
+                        android:text="N°Invent: "
+                        android:textColor="@android:color/background_dark"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/nInventaire1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="12dp"
+                        android:textAlignment="textStart"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_groupFind"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:id="@+id/layoutSn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/equipement12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
                         android:text="Equipement: "
-                        android:textAlignment="viewStart"
                         android:textColor="@android:color/background_dark"
                         android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/equipement"
-                        android:layout_width="100dp"
+                        android:layout_width="107dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:padding="10dp"
                         android:paddingLeft="3dp"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/black"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:padding="10dp"
+                        android:text="N°Invent: "
+                        android:textColor="@android:color/background_dark"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/nInventaire"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:paddingLeft="3dp"
+                        android:textAlignment="textStart"
                         android:textColor="@color/black"
                         android:textSize="13sp" />
 
@@ -94,6 +327,7 @@
                         android:id="@+id/textView6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:padding="10dp"
                         android:text="Marque: "
                         android:textColor="@android:color/background_dark"
                         android:textStyle="bold" />
@@ -103,6 +337,7 @@
                         android:layout_width="80dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
+                        android:padding="10dp"
                         android:paddingLeft="3dp"
                         android:textAlignment="viewStart"
                         android:textColor="@color/black"
@@ -113,6 +348,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
+                        android:padding="10dp"
                         android:text="Matricule: "
                         android:textColor="@android:color/background_dark"
                         android:textStyle="bold" />
@@ -121,51 +357,7 @@
                         android:id="@+id/matricule"
                         android:layout_width="110dp"
                         android:layout_height="wrap_content"
-                        android:paddingLeft="3dp"
-                        android:textAlignment="textStart"
-                        android:textColor="@color/black"
-                        android:textSize="13sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/layoutSn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="15dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/editT"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="S.N: "
-                        android:textColor="@android:color/background_dark"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/sn"
-                        android:layout_width="107dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:paddingLeft="3dp"
-                        android:textAlignment="viewStart"
-                        android:textColor="@color/black"
-                        android:textSize="13sp" />
-
-                    <TextView
-                        android:id="@+id/textView11"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="N°Invent: "
-                        android:textColor="@android:color/background_dark"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/nInventaire"
-                        android:layout_width="110dp"
-                        android:layout_height="wrap_content"
+                        android:padding="10dp"
                         android:paddingLeft="3dp"
                         android:textAlignment="textStart"
                         android:textColor="@color/black"
@@ -175,115 +367,134 @@
 
             </LinearLayout>
 
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/input_layout_collaboratteur"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
-
-                <EditText
-                    android:id="@+id/collaborateur"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="serif"
-                    android:hint="Nom du collaborateur"
-                    android:singleLine="true"
-                    android:text="ELBOUSSOUBI KHADIJA"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-                    android:visibility="visible" />
-
-            </android.support.design.widget.TextInputLayout>
-
             <LinearLayout
+                android:id="@+id/layoutEquipement"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="15dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="12dp"
+                    android:text="S.N: "
+                    android:textColor="@android:color/background_dark"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/sn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:hint="Veuillez scanner le numero de serie"
+                    android:padding="12dp"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layout_groupT"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible">
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_nomPoste"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                    android:id="@+id/input_layout_collaboratteur"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp">
 
                     <EditText
-                        android:id="@+id/nomPoste"
-                        android:layout_width="120dp"
+                        android:id="@+id/collaborateur"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="serif"
-                        android:hint="Nom du poste"
-                        android:text="POSTE 1"
+                        android:hint="Nom du collaborateur"
+                        android:padding="12dp"
+                        android:inputType="text"
+                        android:maxLines="1"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         android:visibility="visible" />
 
-
                 </android.support.design.widget.TextInputLayout>
 
-                <android.support.design.widget.TextInputLayout
-                    android:id="@+id/input_layout_addIp"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
 
-                    <EditText
-                        android:id="@+id/addip"
-                        android:layout_width="120dp"
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_nomPoste"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="serif"
-                        android:hint="Address ip"
-                        android:text="192.168.1.5"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:visibility="visible" />
+                        android:layout_marginTop="10dp">
 
-                </android.support.design.widget.TextInputLayout>
-
-                <CheckBox
-                    android:id="@+id/dhcp"
-                    android:layout_width="90dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:text="dhcp"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/electriciteSeparer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="fill_horizontal"
-                    android:layout_marginLeft="20dp"
-                    android:text="Electricite séparer"
-                    android:textColor="@color/black"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
+                        <EditText
+                            android:id="@+id/nomPoste"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="serif"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:hint="Nom du poste"
+                            android:padding="12dp"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:visibility="visible" />
 
 
-                <CheckBox
-                    android:id="@+id/onduleurOperationnel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="fill_horizontal"
-                    android:layout_marginLeft="20dp"
-                    android:text="Onduleur Opérationnel"
-                    android:textColor="@color/black"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    </android.support.design.widget.TextInputLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/input_layout_addIp"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <EditText
+                            android:id="@+id/addip"
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="serif"
+                            android:hint="Address ip"
+                            android:padding="12dp"
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:visibility="visible" />
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <CheckBox
+                        android:id="@+id/dhcp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:padding="12dp"
+                        android:text="dhcp"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -291,15 +502,12 @@
                 android:id="@+id/ajouterMateriel"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginLeft="150dp"
-                android:clickable="true"
-                android:src="@drawable/add2"
-                android:tint="@color/ripple"
-                app:elevation="1dp"
-                app:layout_anchorGravity="bottom" />
-
+                android:layout_gravity="bottom|end"
+                android:layout_margin="10dp"
+                android:src="@drawable/valider" />
 
         </LinearLayout>
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/my_recycler_view"

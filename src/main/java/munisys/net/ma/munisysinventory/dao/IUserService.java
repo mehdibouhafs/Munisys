@@ -15,7 +15,8 @@ public interface IUserService {
     public void majUser(int id, String nom, String email, String password);
     public User getUser(String email,String password);
     public Boolean getUserBoolean(String email,String password);
-    public Boolean getUserBoolean(String email);
+    public Boolean getUserBooleanMailAndName(String email,String name);
     public Boolean getUserBooleanEmail(String email);
     public List<User>  getALLUser();
+    public void dropTableUsers();
 }

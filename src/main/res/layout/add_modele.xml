@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="Nouveau Modèle"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/blue"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -91,20 +91,26 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="24dp"
             android:layout_weight="1"
+            android:background="@color/primary_dark"
             android:padding="12dp"
-            android:text="Creer " />
+            android:text="Creer "
+            android:textColor="@color/White" />
 
         <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_annuler"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="24dp"
             android:layout_weight="1"
+            android:background="@color/red"
             android:padding="12dp"
-            android:text="Annuler" />
+            android:text="Annuler"
+            android:textColor="@color/White" />
     </LinearLayout>
 
 

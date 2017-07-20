@@ -35,7 +35,7 @@ public class IntervenantDbTest {
     @Before
     public void instantiate(){
         this.context = InstrumentationRegistry.getTargetContext();
-        this.db = new Db_Invenantaire(context,8);
+        this.db = new Db_Invenantaire(context,16);
     }
 
 
@@ -46,21 +46,20 @@ public class IntervenantDbTest {
         assertEquals(intervenant.getId(), 2);
     }
 
-
-
     @Test
     public void insert_isCorrect() throws Exception {
-        /*this.db.insererIntervenant("testIntervenant0");
-        this.db.insererIntervenant("testIntervenant1");
-        this.db.insererIntervenant("testIntervenant2");
-        this.db.insererIntervenant("testIntervenant3");
-        this.db.insererIntervenant("testIntervenant4");*/
+        /*this.db.insererIntervenant("MR Driss Alami");
+        this.db.insererIntervenant("MR Driss Farhat");
+        this.db.insererIntervenant("MR Allal Lchguer");
+        this.db.insererIntervenant("MR Bouhafs Mehdi");
+        this.db.insererIntervenant("MR Ali Alami");
+        this.db.insererIntervenant("MR Ahmed Bassou");*/
         ArrayList<Intervenant> intervenants =  this.db.getAllIntervenants();
         for (Intervenant e:intervenants
                 ) {
             Log.e("intervenant ",e.getNomIntervenant() +" id " + e.getId());
         }
-        assertEquals(intervenants.size(), 5);
+        assertEquals(intervenants.size(), 6);
     }
 
 

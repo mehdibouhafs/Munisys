@@ -45,6 +45,7 @@ public class FirstActivity extends HomeActivity {
 
     private ImageButton newIntervenant;
     private Session session;
+    private ArrayList<Intervenant> intervenants;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +54,16 @@ public class FirstActivity extends HomeActivity {
 
        View view = getLayoutInflater().inflate(R.layout.content_first, frameLayout);
         setTitle("Select intervenant");
+
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setDi
+
+
         activityId = R.layout.content_first;
         session = new Session(this);
+        intervenants = new ArrayList<>();
+        intervenants.add(db.getIntervenantByName(session.getNameUser()));
 
         intervenantPrincipale = (TextView) view.findViewById(R.id.intervenantPrincipale);
         intervenantPrincipale.setText(session.getNameUser());
@@ -68,6 +77,7 @@ public class FirstActivity extends HomeActivity {
                 dialog.setContentView(R.layout.add_invetervenant);
 
                 final EditText input_client = (EditText) dialog.findViewById(R.id.input_intervenant);
+
                 Button btn_creer = (Button)dialog.findViewById(R.id.btn_create_intervenant);
                 Button btn_annuler = (Button)dialog.findViewById(R.id.btn_annuler);
 
@@ -75,7 +85,8 @@ public class FirstActivity extends HomeActivity {
                     @Override
                     public void onClick(View v) {
                         db.insererIntervenant(input_client.getText().toString());
-                       // searchMultiSpinnerUnlimited.getAdapter
+                        searchMultiSpinnerUnlimited.setItems(db.getIntervenants(session.getNameUser()),-1);
+                        searchMultiSpinnerUnlimited.getMyAdapter().notifyDataSetChanged();
                         dialog.dismiss();
 
                     }
@@ -109,26 +120,20 @@ public class FirstActivity extends HomeActivity {
         confirmerIntervenant = (Button) view.findViewById(R.id.validerIntervenant);
         final List<Intervenant> list = db.getAllIntervenants();
 
-        final List<KeyPairBoolData> listArray0 = new ArrayList<>();
 
-        for (int i = 0; i < list.size(); i++) {
-            KeyPairBoolData h = new KeyPairBoolData();
-            h.setId(i + 1);
-            h.setName(list.get(i).getNomIntervenant());
-            h.setSelected(false);
-            listArray0.add(h);
-        }
 
         searchMultiSpinnerUnlimited = (MultiSpinnerSearch) findViewById(R.id.searchMultiSpinnerUnlimited);
-        searchMultiSpinnerUnlimited.setItems(listArray0, -1, new SpinnerListener() {
+        searchMultiSpinnerUnlimited.setItems(db.getIntervenants(session.getNameUser()), -1, new SpinnerListener() {
 
             @Override
             public void onItemsSelected(List<KeyPairBoolData> items) {
-
                 for (int i = 0; i < items.size(); i++) {
                     if (items.get(i).isSelected()) {
                         //Log.i("Select", i + " : " + items.get(i).getName() + " : " + items.get(i).isSelected());
-                        Toast.makeText(getApplicationContext(),"Selected "+items.get(i).getName()+":"+items.get(i).isSelected(),Toast.LENGTH_SHORT).show();
+
+                        Intervenant intervenant  = new Intervenant(((int) items.get(i).getId()),items.get(i).getName());
+                        intervenants.add(intervenant);
+                        //Toast.makeText(getApplicationContext(),"Intervenant Selectionner :"+items.get(i).getName(),Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -140,8 +145,10 @@ public class FirstActivity extends HomeActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(FirstActivity.this,SecondeActivity.class);
                 Bundle bundle = new Bundle();
-                Intervenant intervenant = new Intervenant("mehdi");
-                bundle.putSerializable("intervenant",intervenant);
+                for(Intervenant e:intervenants) {
+                    Log.e("First Activity ", e.toString());
+                }
+                bundle.putSerializable("intervenants",intervenants);
                 intent.putExtras(bundle);
                 startActivity(intent);
                 finish();
@@ -149,6 +156,15 @@ public class FirstActivity extends HomeActivity {
         });
 
     }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        Toast.makeText(this,"Back pressed",Toast.LENGTH_SHORT).show();
+        return true;
+    }
+
+
 
 
 
@@ -164,6 +180,10 @@ public class FirstActivity extends HomeActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
+            case R.id.home:
+            Intent intent  = new Intent(this,FirstActivity.class);
+            startActivity(intent);
+            break;
            /* case R.id.action_save:
                 save();
                 return true;
@@ -177,5 +197,10 @@ public class FirstActivity extends HomeActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        Intent intent  = new Intent(this,MenuActivity.class);
+        startActivity(intent);
+    }
 }

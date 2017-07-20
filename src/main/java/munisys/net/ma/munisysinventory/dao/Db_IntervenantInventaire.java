@@ -31,15 +31,21 @@ public class Db_IntervenantInventaire extends Db_Intervenant implements IInterve
         //valeurs.put("id",id);
         valeurs.put("idInventaire",idInventaire);
         valeurs.put("idIntervenant",idIntervenant);
-
         db.insert("IntervenantInventaire",null,valeurs);
         db.close();
     }
 
     @Override
-    public void deleteIntervenantInventaire(int idIventaire) {
+    public void deleteIntervenantInventaire(int idIntervenant) {
         SQLiteDatabase db=getWritableDatabase();
-        db.delete("IntervenantInventaire","id=?",new String[]{String.valueOf(idIventaire)});
+        db.delete("IntervenantInventaire","id=?",new String[]{String.valueOf(idIntervenant)});
+        db.close();
+    }
+
+    @Override
+    public void deleteIntervenantInventairebyIdInventaire(int idIventaire) {
+        SQLiteDatabase db=getWritableDatabase();
+        db.delete("IntervenantInventaire","idInventaire=?",new String[]{String.valueOf(idIventaire)});
         db.close();
     }
 
@@ -72,4 +78,13 @@ public class Db_IntervenantInventaire extends Db_Intervenant implements IInterve
 
         return intervenants;
     }
+
+    @Override
+    public void dropTableIntervenantInventaire() {
+        SQLiteDatabase db=getWritableDatabase();
+        db.execSQL("Delete from IntervenantInventaire");
+        db.close();
+    }
+
+
 }

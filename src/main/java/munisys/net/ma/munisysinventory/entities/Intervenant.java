@@ -41,6 +41,9 @@ public class Intervenant implements Serializable{
 
     @Override
     public String toString() {
-        return nomIntervenant;
+        return "Intervenant{" +
+                "id=" + id +
+                ", nomIntervenant='" + nomIntervenant + '\'' +
+                '}';
     }
 }

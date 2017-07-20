@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="munisys.net.ma.munisysinventory">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-feature android:name="android.hardware.input" />
 
     <application
@@ -11,11 +14,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FirstActivity" />
+        <activity android:name=".FirstActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MenuActivity" />
+        </activity>
         <activity android:name=".SecondeActivity" />
         <activity android:name=".ThirdActivity" />
         <activity android:name=".FourthActivity" />
-        <activity android:name=".MenuActivity"></activity>
+        <activity android:name=".MenuActivity" />
         <activity android:name=".InventoriesActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".LoginActivity">
@@ -26,7 +33,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".SignupActivity" />
-        <activity android:name=".ScannerActivity"></activity>
+        <activity android:name=".ScannerActivity" />
+        <activity android:name=".MiddleActivitry" />
+        <activity android:name=".NewClient" />
+        <activity
+            android:name=".DetailSiteActivity"
+            android:label="@string/title_activity_detail_site"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".DetailProduitsActivity"
+            android:label="@string/title_activity_detail_produits"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

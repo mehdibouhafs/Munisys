@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.oem.barcode.BCRIntents;
+import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
 
 import munisys.net.ma.munisysinventory.dao.Db_Invenantaire;
 import munisys.net.ma.munisysinventory.entities.Produit;
@@ -26,15 +27,20 @@ import munisys.net.ma.munisysinventory.entities.Produit;
 public class BCRAppBroadcastReceiver extends BroadcastReceiver {
 
     private Context ctx;
-    private TextView edit_modele,equipement,marque,matricule,sn,nInventaire;
-    private EditText addIp,collaborateur,nomPoste;
-    private CheckBox dhcp,onduleurOp,electricite;
-    private LinearLayout layout_group;
+    private TextView equipement,marque,matricule,nInventaire;
+    private EditText addIp,collaborateur,nomPoste,sn,edit_modele,edit_sn;
+    private CheckBox dhcp;
+    private LinearLayout layout_groupFind,layout_groupEdit,layout_groupT;
     private TextView note;
     private Db_Invenantaire db;
+    private boolean modelFilled;
+    private String data;
 
-    public BCRAppBroadcastReceiver(Context ctx, TextView editModele,EditText collaborateur, EditText nomPoste, EditText addIp, CheckBox dhcp,
-                                   CheckBox electricite,CheckBox onduleurOp,LinearLayout layout_group,TextView note,TextView equipement,TextView marque,TextView matricule,TextView sn,TextView nInventaire) {
+    public BCRAppBroadcastReceiver(Context ctx, EditText editModele,EditText edit_sn, EditText collaborateur, EditText nomPoste,
+                                   EditText addIp, CheckBox dhcp,
+                                   LinearLayout layout_groupFind, LinearLayout layout_groupEdit,
+                                   LinearLayout layout_groupT,TextView note, TextView equipement, TextView marque, TextView matricule,
+                                   EditText sn, TextView nInventaire) {
 
         this.ctx = ctx;
         this.edit_modele = editModele;
@@ -42,16 +48,15 @@ public class BCRAppBroadcastReceiver extends BroadcastReceiver {
         this.collaborateur = collaborateur;
         this.nomPoste = nomPoste;
         this.dhcp = dhcp;
-        this.onduleurOp = onduleurOp;
-        this.electricite = electricite;
-        this.layout_group = layout_group;
-
+        this.layout_groupFind = layout_groupFind;
         this.note = note;
         this.equipement = equipement;
         this.marque = marque;
         this.matricule = matricule;
         this.sn = sn;
         this.nInventaire = nInventaire;
+        this.layout_groupEdit = layout_groupEdit;
+        this.layout_groupT = layout_groupT;
     }
 
 
@@ -62,57 +67,65 @@ public class BCRAppBroadcastReceiver extends BroadcastReceiver {
 
             int id = intent.getIntExtra(BCRIntents.EXTRA_BCR_TYPE, -1);
             byte[] data = intent.getByteArrayExtra(BCRIntents.EXTRA_BCR_DATA);
-
-
             String modele = new String(data);
-            if(!modele.isEmpty()) {
-                db = new Db_Invenantaire(this.ctx, 11);
+
+            if((!modele.isEmpty() && edit_modele.getText().toString().isEmpty())) {
+                db = new Db_Invenantaire(this.ctx, 16);
                     Produit p = db.getProduit(modele.trim());
                     if (p != null) {
-                        fill(p.getModele(), p.getEquipement(), p.getMarque(), p.getMatricule(), p.getSn(), p.getnInventaire());
-                        //edit_modele.setText(new String(data));
+                        fill(p.getModele(), p.getEquipement(), p.getMarque(), p.getMatricule(), p.getnInventaire());
+                       // edit_modele.setText(new String(data));
                         edit_modele.setFocusable(true);
                         edit_modele.setFocusableInTouchMode(true);
                         edit_modele.requestFocus();
                         addIp.setEnabled(true);
+                        this.data = modele;
                         collaborateur.setEnabled(true);
                         nomPoste.setEnabled(true);
                         addIp.setEnabled(true);
                         dhcp.setEnabled(true);
-                        electricite.setEnabled(true);
-                        onduleurOp.setEnabled(true);
-                        layout_group.setVisibility(LinearLayout.VISIBLE);
-                        note.setVisibility(View.INVISIBLE);
-                    }
+                        sn.setEnabled(true);
+                        note.setText("please scan S.N");
+                        layout_groupFind.setVisibility(LinearLayout.VISIBLE);
+                        layout_groupT.setVisibility(View.VISIBLE);
+                        layout_groupEdit.setVisibility(LinearLayout.GONE);
+                        Toast.makeText(ctx, "Produit disponible !", Toast.LENGTH_SHORT).show();
+                    } else {
+                    Toast.makeText(ctx, "Produit indisponible", Toast.LENGTH_SHORT).show();
+                    new AlertDialog.Builder(ctx)
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setTitle("Confirmation")
+                            .setMessage("Voullez-vous ajouter un nouveau produit ?")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    layout_groupFind.setVisibility(LinearLayout.GONE);
+                                    layout_groupEdit.setVisibility(LinearLayout.VISIBLE);
+                                    layout_groupT.setVisibility(View.VISIBLE);
+                                    sn.setEnabled(true);
+                                }
 
+                            })
+                            .setNegativeButton("No", null)
+                            .show();
+                         }
             }
-
-           /* DialogInterface.OnClickListener onClickListener = new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    switch (which) {
-                        case DialogInterface.BUTTON_NEGATIVE:
-                            break;
-                        case DialogInterface.BUTTON_POSITIVE:
-                            break;
-                    }
-                    dialog.dismiss();
+            if((!modele.isEmpty()&& !edit_modele.getText().toString().isEmpty() && sn.getText().toString().isEmpty())){
+                Toast.makeText(ctx,"SN",Toast.LENGTH_SHORT).show();
+                sn.getText().clear();
+                sn.setText(modele.toString().trim());
                 }
-            };*/
 
-            //builder.setPositiveButton(android.R.string.ok, onClickListener);
-            //AlertDialog dialog = builder.create();
-            //dialog.setCancelable(true);
-            //dialog.show();
-
-            //Toast.makeText(mActivity,new String(data), Toast.LENGTH_LONG).show();
         }
+
+
     }
-    public void fill(String modele,String equipement1,String marque1,String matricule1,String sn1,String nInventaire1){
-        edit_modele.setText(modele);
+    public void fill(String modele,String equipement1,String marque1,String matricule1,String nInventaire1){
+
+        //edit_modele.setText(modele);
         equipement.setText(equipement1);
         marque.setText(marque1);
         matricule.setText(matricule1);
-        sn.setText(sn1);
         nInventaire.setText(nInventaire1);
 
 

@@ -18,6 +18,7 @@ import munisys.net.ma.munisysinventory.dao.Db_Invenantaire;
 import munisys.net.ma.munisysinventory.dao.Db_gest;
 import munisys.net.ma.munisysinventory.entities.Intervenant;
 import munisys.net.ma.munisysinventory.entities.Inventaire;
+import munisys.net.ma.munisysinventory.entities.ProduitInventaire;
 
 import static org.junit.Assert.assertEquals;
 
@@ -37,32 +38,34 @@ public class InventaireDbTest {
     @Before
     public void instantiate(){
         this.context = InstrumentationRegistry.getTargetContext();
-        this.db = new Db_Invenantaire(context,8);
+        this.db = new Db_Invenantaire(context,16);
     }
 
 
 
     @Test
     public void get_isCorrect() throws Exception {
-        Inventaire e =  this.db.getInventaire(1);
-        Log.e("inventaires ",e.getId()+"");
-        assertEquals(e.getId(), 1);
+        //this.db.deleteInventaire(2);
+        Inventaire e =  this.db.getInventaire(6);
+        //Log.e("inventaires ",e.toString());
+        assertEquals(e.getId(), 6);
     }
 
     @Test
     public void insert_isCorrect() throws Exception {
-        //this.db.insererInventaire(1,2,new Date());
+        //this.db.insererInventaire(2,10,new Date(),1,1,1,1,1,1,"c bon");
         //this.db.insererInventaire(1,3,new Date());
         //this.db.insererInventaire(3,3,new Date());
        // this.db.insererInventaire(1,2,3,new Date());
        // this.db.insererInventaire(2,3,4,new Date());
         //this.db.insererProduitInventaire("CXFPEM","7","6CM41130DQ","Poste 1","192.168.1.3",true,true,true,"Collaborateur1");
         //this.db.insererProduitInventaire("C9F26AA","7","6CM41130DQ","Poste 2","192.168.1.4",true,true,true,"Collaborateur2");
-
-        ArrayList<Inventaire> inventaires =  this.db.getAllInventaires();
+        //this.db.dropTableInventaire();
+        this.db.deleteInventaire(3);this.db.deleteInventaire(4);this.db.deleteInventaire(5);
+       ArrayList<Inventaire> inventaires =  this.db.getAllInventaires();
         for (Inventaire e:inventaires
                 ) {
-            Log.e("inventaires ",e.getDateInventaire() +" id " + e.getId());
+            Log.e("Inventairesss",e.toString());
         }
         assertEquals(inventaires.size(), 2);
     }

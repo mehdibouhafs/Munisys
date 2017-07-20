@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
         _loginButton = (Button) findViewById(R.id.btn_login);
         _signupLink = (TextView) findViewById(R.id.link_signup);
 
-        db = new Db_Invenantaire(this,11);
+        db = new Db_Invenantaire(this,16);
         List<User> users = db.getALLUser();
         for (User e : users){
             Log.e("User " , e.toString());

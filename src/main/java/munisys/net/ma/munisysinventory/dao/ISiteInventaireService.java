@@ -10,9 +10,11 @@ import munisys.net.ma.munisysinventory.entities.SiteInventaire;
  */
 
 public interface ISiteInventaireService {
-    public void insererSiteInventaire(SiteInventaire siteInventaire);
+    public Long insererSiteInventaire(SiteInventaire siteInventaire);
     public void deleteSiteInventaire(int idSiteInventaire);
+    public void deleteSiteInventairebyIdInventaire(int idIventaire);
     //public void majSiteInventaire(int idSiteInventaire,SiteInventaire siteInventaire);
-    public SiteInventaire getSiteInventaire(int id);
+    public ArrayList<SiteInventaire> getSiteInventaire(int idInventaire);
     public ArrayList<SiteInventaire> getAllSiteInventaire();
+    public void dropTableSiteInventaire();
 }

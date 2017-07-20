@@ -37,7 +37,7 @@ public class ClientDbTest {
     @Before
     public void instantiate(){
         this.context = InstrumentationRegistry.getTargetContext();
-        this.db = new Db_Invenantaire(context,8);
+        this.db = new Db_Invenantaire(context,16);
     }
 
 
@@ -55,20 +55,18 @@ public class ClientDbTest {
     public void insert_isCorrect() throws Exception {
 
         //this.db.dropTableClient();
-       /*this.db.insererClient("GCAM");
-        this.db.insererClient("Maroc Bureau");
-        this.db.insererClient("BMCI");
-        this.db.insererClient("Munisys");
-        this.db.insererClient("CIH");*/
+       //this.db.insererClient("GCAM","/external/images/media/59");
+        //this.db.insererClient("Maroc Bureau","/external/images/media/55");
 
-        /*ArrayList<Client> clients =  this.db.getAllClients();
+
+        ArrayList<Client> clients =  this.db.getAllClients();
 
         for (Client e:clients
                 ) {
-            Log.e("Client ",e.getClient() +" id " + e.getId());
+            Log.e("Client ",e.getClient() +" id " + e.getId() + "file " + e.getLogo());
         }
-        this.db.insererClient("GCAM");*/
-        assertEquals(this.db.insererClient("GCAM"),false);
+        this.db.insererClient("GCAM","/external/images/media/96");
+        assertEquals(this.db.insererClient("GCAM","/external/images/media/959"),false);
     }
 
     // Intervenant

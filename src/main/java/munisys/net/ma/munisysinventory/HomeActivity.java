@@ -33,7 +33,7 @@ public class HomeActivity extends AppCompatActivity {
     protected FrameLayout frameLayout;
     protected int activityId;
     protected Session session;
-    protected Db_Invenantaire db = new Db_Invenantaire(this,11);
+    protected Db_Invenantaire db = new Db_Invenantaire(this,16);
 
     static final String[] titles = new String[] {
             "New Inventaire","All Inventaire",
@@ -121,7 +121,6 @@ public class HomeActivity extends AppCompatActivity {
 
 
         View header = navigationView.getHeaderView(0);
-
 
         TextView name_user = (TextView)header.findViewById(R.id.name_user);
         name_user.setText(session.getNameUser());

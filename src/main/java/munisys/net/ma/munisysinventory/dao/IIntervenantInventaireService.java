@@ -12,9 +12,11 @@ import munisys.net.ma.munisysinventory.entities.IntervenantInventaire;
 public interface IIntervenantInventaireService {
 
     public void insererIntervenantInventaire(int idInventaire,int idIntervenant);
-    public void deleteIntervenantInventaire(int idIventaire);
-
+    public void deleteIntervenantInventaire(int idInterverveant);
+    public void deleteIntervenantInventairebyIdInventaire(int idIventaire);
     public ArrayList<IntervenantInventaire> getAllIntervenantInventaire(int idInventaire);
 
     public ArrayList<Intervenant> getIntervenantsInventaire(int idInventaire);
+    public void dropTableIntervenantInventaire();
+
 }

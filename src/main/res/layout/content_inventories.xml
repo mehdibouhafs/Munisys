@@ -4,12 +4,23 @@
     android:layout_height="match_parent">
 
 
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="?actionBarSize"
+        android:background="@color/blue"
+        android:padding="20dp"
+        android:text="tout les inventaires"
+        android:textAlignment="center"
+        android:textColor="@color/White"
+        android:textSize="18sp" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_recycler_view2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="?actionBarSize"
         android:scrollbars="vertical" />
 
 </LinearLayout>

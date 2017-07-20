@@ -38,6 +38,7 @@ public class Db_Site extends Db_Client implements ISiteService {
                 e.setSite(cur.getString(cur.getColumnIndex("site")));
                 e.setClientId(cur.getInt(cur.getColumnIndex("clientId")));
                 e.setVille(cur.getString(cur.getColumnIndex("ville")));
+
                 arl.add(e);
                 cur.moveToNext();
             }
@@ -57,7 +58,7 @@ public class Db_Site extends Db_Client implements ISiteService {
             while(cur.isAfterLast()==false)
             {
                 arl.add(new Site(cur.getInt(cur.getColumnIndex("id")),cur.getInt(cur.getColumnIndex("clientId")),cur.getString(cur.getColumnIndex("site")),
-                        cur.getString(cur.getColumnIndex("ville")),cur.getString(cur.getColumnIndex("telephone")),cur.getString(cur.getColumnIndex("contact"))));
+                        cur.getString(cur.getColumnIndex("ville"))));
                 cur.moveToNext();
             }
         cur.close();
@@ -80,7 +81,14 @@ public class Db_Site extends Db_Client implements ISiteService {
     }
 
     @Override
-    public boolean insererSite(String site, String ville, int cliendId,String telephone,String contact) {
+    public void dropTableSite() {
+        SQLiteDatabase db=getWritableDatabase();
+        db.execSQL("Delete from Site");
+        db.close();
+    }
+
+    @Override
+    public boolean insererSite(String site, String ville, int cliendId) {
 
         if(!getSiteBoolean(site,ville,cliendId)) {
             SQLiteDatabase db = getWritableDatabase();
@@ -90,8 +98,6 @@ public class Db_Site extends Db_Client implements ISiteService {
             valeurs.put("site", site);
             valeurs.put("ville", ville);
             valeurs.put("clientId", cliendId);
-            valeurs.put("telephone", telephone);
-            valeurs.put("contact", contact);
             db.insert("Site", null, valeurs);
             db.close();
             return true;
@@ -107,14 +113,12 @@ public class Db_Site extends Db_Client implements ISiteService {
     }
 
     @Override
-    public void majSite(int id, String site, String ville, int clientId,String tel,String contact) {
+    public void majSite(int id, String site, String ville, int clientId) {
         SQLiteDatabase db=getWritableDatabase();
         ContentValues valeurs=new ContentValues();
         //valeurs.put("id",id);
         valeurs.put("site",site);
         valeurs.put("ville",ville);
-        valeurs.put("telephone",tel);
-        valeurs.put("contact",contact);
         valeurs.put("clientId",clientId);
 
         db.update("Site",valeurs,"id=?",new String[]{String.valueOf(id)});
@@ -128,12 +132,11 @@ public class Db_Site extends Db_Client implements ISiteService {
         Cursor cur=db.rawQuery("select * from Site where id=?",new String[]{String.valueOf(id)} );
 
         if(cur.moveToFirst())
-        {   e.setIdSite(cur.getInt(cur.getColumnIndex("id")));
+        {
+            e.setIdSite(cur.getInt(cur.getColumnIndex("id")));
             e.setSite(cur.getString(cur.getColumnIndex("site")));
             e.setVille(cur.getString(cur.getColumnIndex("ville")));
             e.setClientId(cur.getInt(cur.getColumnIndex("clientId")));
-
-
         }
         cur.close();
         db.close();

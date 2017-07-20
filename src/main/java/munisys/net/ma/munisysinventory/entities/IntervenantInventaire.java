@@ -31,4 +31,12 @@ public class IntervenantInventaire implements Serializable {
     public void setInventaireId(int inventaireId) {
         this.inventaireId = inventaireId;
     }
+
+    @Override
+    public String toString() {
+        return "IntervenantInventaire{" +
+                "intervenantId=" + intervenantId +
+                ", inventaireId=" + inventaireId +
+                '}';
+    }
 }

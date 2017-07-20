@@ -1,6 +1,9 @@
 package munisys.net.ma.munisysinventory.dao;
 
+import com.androidbuts.multispinnerfilter.KeyPairBoolData;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import munisys.net.ma.munisysinventory.entities.Intervenant;
 import munisys.net.ma.munisysinventory.entities.Produit;
@@ -17,4 +20,8 @@ public interface IIntervenantService {
     public ArrayList<Intervenant> getAllIntervenants();
     //public ArrayList<Intervenant> getIntervenantsInventaire(int idInventaire);
     public Boolean getIntervenantBoolean(String nomIntervenant);
+    public List<KeyPairBoolData> getIntervenants(String intervenant);
+
+    public Intervenant getIntervenantByName(String nomIntervenant);
+    public void dropTableIntervenant();
 }

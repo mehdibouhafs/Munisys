@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="150dp"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:layout_alignEnd="@+id/tx4"
         android:layout_alignParentTop="true"
         android:layout_gravity="top|center_horizontal"
@@ -20,7 +20,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/spinner"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="5dp"
@@ -31,12 +31,13 @@
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        android:text="Intervenant Principal"
+        android:padding="5dp"
+        android:text="Intervenant Principal :"
         android:textAlignment="center"
-        android:textColor="@color/color_stroke"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -47,17 +48,18 @@
         android:layout_marginTop="10dp"
         android:text="Mr Farhat Driss"
         android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textColor="@color/primary_dark"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="70dp"
+        android:layout_width="60dp"
         android:layout_height="70dp"
         android:layout_above="@+id/spinner"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:scaleType="center"
         android:src="@drawable/group" />
 
@@ -67,9 +69,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="5dp"
-        android:text="Intervenant Adjoints"
+        android:padding="5dp"
+        android:text="Intervenant Adjoints :"
         android:textAlignment="center"
-        android:textColor="@color/color_stroke"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold" />
 
@@ -81,16 +84,16 @@
 
         <com.androidbuts.multispinnerfilter.MultiSpinnerSearch
             android:id="@+id/searchMultiSpinnerUnlimited"
-            android:layout_width="240dp"
+            android:layout_width="270dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="40dp"
+            android:padding="10dp"
             app:hintText="Multi Selection With Filter Without Limit" />
 
         <ImageButton
             android:id="@+id/newIntervenant"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginLeft="10dp"
             android:background="@drawable/add"
             android:backgroundTint="@android:color/holo_green_light" />
     </LinearLayout>
@@ -98,7 +101,7 @@
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/validerIntervenant"
-        android:layout_width="262dp"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -107,8 +110,8 @@
         android:background="@color/color_stroke"
         android:drawableRight="@drawable/checked1"
         android:elevation="11dp"
-        android:paddingRight="10dp"
-        android:text="Confirmer"
+        android:paddingRight="5dp"
+        android:text="Suivant"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#fff"
